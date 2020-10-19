@@ -3,8 +3,23 @@
     <h1 class="text-center"><%= @match.title %> </h1>
     <h6 class="text-center"><%= @match.date.strftime('%A %e %B %Y') %></h6>
   </div>
-  <div class="row justify-content-around">
-    <div class="col-10 col-md-6 border rounded shadow py-3">
+  <div class="border rounded shadow p-3 my-3">
+      <h1 class="w-100 text-center"><%= @match.score %></h1>
+    <div class="row m-0 justify-content-between">
+      <div class="col-12 p-0">
+        <% @match.match_goals.each do |match_goal| %>
+          <div class="d-flex align-items-center score-text <%= match_goal.team.home == true ? 'justify-content-start' : 'justify-content-end' %>">
+            <i class="fas fa-futbol mr-2"></i>
+            <span class="mr-2"><%= match_goal.goal.user.name %></span>
+            (<i class="fas fa-hands-helping mr-2"></i> <%= match_goal.assist.user.name %>)
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <%= link_to 'ADD GOAL', new_match_match_goal_path(@match), class: 'btn btn-primary mt-3' %>
+  </div>
+  <div class="row m-0 justify-content-around">
+    <div class="col-12 col-md-6 border rounded shadow py-3">
       <% if @match.teams.empty? %>
         <%= link_to "ADD HOME TEAM", new_match_team_path(@match, home: true), class: 'btn btn-primary' %>
       <% end %>
@@ -26,7 +41,7 @@
         </div>
       <% end %>
     </div>
-    <div class="col-10 col-md-6 border rounded shadow py-3">
+    <div class="col-12 col-md-6 border rounded shadow py-3">
       <% if @match.teams.size == 1 %>
         <%= link_to "ADD AWAY TEAM", new_match_team_path(@match, home: false), class: 'btn btn-primary' %>
       <% end %>

@@ -4,3 +4,9 @@
   width: 100%;
   max-width: 500px;
 }
+
+.score-text {
+  @include media-breakpoint-down(sm) {
+    font-size: 12px;
+  }
+}

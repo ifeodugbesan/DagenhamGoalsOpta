@@ -1,2 +1,7 @@
-<h1>MatchGoals#new</h1>
-<p>Find me in app/views/match_goals/new.html.erb</p>
+<div class="container py-3">
+  <%= simple_form_for [@match, @match_goal] do |f| %>
+    <%= f.input :goal, collection: User.all.order(name: :asc) %>
+    <%= f.input :assist, collection: User.all.order(name: :asc) %>
+    <%= f.submit class: 'btn btn-primary' %>
+  <% end %>
+</div>
