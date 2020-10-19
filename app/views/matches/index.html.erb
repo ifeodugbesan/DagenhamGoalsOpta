@@ -1,0 +1,15 @@
+<div class="container">
+  <%= link_to 'NEW MATCH', new_match_path, class: 'btn btn-block btn-primary my-3' %>
+  <div class="row">
+    <% @matches.each do |match| %>
+      <div class="col-12 col-md-6 col-lg-4">
+        <%= link_to match_path(match) do %>
+          <div class="card rounded shadow p-3">
+            <h1><%= match.title %></h1>
+            <p><%= match.date.strftime('%d-%m-%y') %></p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

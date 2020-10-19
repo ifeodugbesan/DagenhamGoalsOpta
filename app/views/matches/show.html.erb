@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="py-4">
+    <h1 class="text-center"><%= @match.title %> </h1>
+    <h6 class="text-center"><%= @match.date.strftime('%A %e %B %Y') %></h6>
+  </div>
+  <div class="row justify-content-around">
+    <div class="col-10 col-md-6 border rounded shadow py-3">
+      <% if @match.teams.empty? %>
+        <%= link_to "ADD HOME TEAM", new_match_team_path(@match, home: true), class: 'btn btn-primary' %>
+      <% end %>
+      <% if @match.teams.where(home: true).any? %>
+        <h5 class="text-center font-weight-bold mb-3">TEAM <%= @match.teams.where(home: true).first.captain.upcase %></h5>
+        <div class="row justify-content-center">
+          <div class="col-4 mb-2">
+            <%= image_tag 'https://m.media-amazon.com/images/M/MV5BZjY5YTljMTItNDEwMC00ODA3LWE0MmEtNjI2YTY1NDNiZGY1XkEyXkFqcGdeQXVyMjUyNDk2ODc@._V1_.jpg', style: 'width: 100%' %>
+            <p class="m-0 text-center"><%= @match.teams.where(home: true).first.captain %></p>
+          </div>
+        </div>
+        <div class="row m-0">
+        <% @match.teams.where(home: true).first.players.first(6).each do |player| %>
+            <div class="col-4 mb-2">
+              <%= image_tag 'https://m.media-amazon.com/images/M/MV5BZjY5YTljMTItNDEwMC00ODA3LWE0MmEtNjI2YTY1NDNiZGY1XkEyXkFqcGdeQXVyMjUyNDk2ODc@._V1_.jpg', style: 'width: 100%' %>
+              <p class="m-0 text-center"><%= player.user.name %> </p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-10 col-md-6 border rounded shadow py-3">
+      <% if @match.teams.size == 1 %>
+        <%= link_to "ADD AWAY TEAM", new_match_team_path(@match, home: false), class: 'btn btn-primary' %>
+      <% end %>
+      <% if @match.teams.where(home: false).any? %>
+        <h5 class="text-center font-weight-bold mb-3">TEAM <%= @match.teams.where(home: false).first.captain.upcase %></h5>
+        <div class="row justify-content-center">
+          <div class="col-4 mb-2">
+            <%= image_tag 'https://m.media-amazon.com/images/M/MV5BZjY5YTljMTItNDEwMC00ODA3LWE0MmEtNjI2YTY1NDNiZGY1XkEyXkFqcGdeQXVyMjUyNDk2ODc@._V1_.jpg', style: 'width: 100%' %>
+            <p class="m-0 text-center"><%= @match.teams.where(home: false).first.captain %></p>
+          </div>
+        </div>
+        <div class="row m-0">
+        <% @match.teams.where(home: false).first.players.first(6).each do |player| %>
+            <div class="col-4 mb-2">
+              <%= image_tag 'https://m.media-amazon.com/images/M/MV5BZjY5YTljMTItNDEwMC00ODA3LWE0MmEtNjI2YTY1NDNiZGY1XkEyXkFqcGdeQXVyMjUyNDk2ODc@._V1_.jpg', style: 'width: 100%' %>
+              <p class="m-0 text-center"><%= player.user.name %> </p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
