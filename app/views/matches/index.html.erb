@@ -4,7 +4,7 @@
     <% @matches.each do |match| %>
       <div class="col-12 col-md-6 col-lg-4">
         <%= link_to match_path(match), class: 'no-decoration' do %>
-          <div class="card rounded shadow">
+          <div class="card rounded shadow mb-3">
             <div class="d-flex flex-column justify-content-center align-items-center">
               <% if match.teams.size == 2 %>
                 <div class="d-flex">
