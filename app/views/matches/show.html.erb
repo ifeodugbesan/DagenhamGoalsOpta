@@ -4,6 +4,11 @@
     <p class="text-center mb-0" style="font-size: 14px;"><%= @match.date.strftime('%A %e %B %Y') %></p>
   </div>
   <div class="border rounded shadow p-3 my-3" style="background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://images.unsplash.com/photo-1510051640316-cee39563ddab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center;">
+    <% unless  Date.today > @match.date %>
+      <div class="d-flex justify-content-center">
+        <%= link_to 'refresh score', '', class: 'mb-3' %>
+      </div>
+    <% end %>
       <h1 class="w-100 text-center" style="font-size: 70px; font-family: 'Bungee Inline'"><%= @match.score %></h1>
     <div class="row m-0 justify-content-between">
       <div class="col-12 p-0">
@@ -17,7 +22,9 @@
       </div>
     </div>
     <% unless  Date.today > @match.date %>
-      <%= link_to 'ADD GOAL', new_match_match_goal_path(@match), class: 'btn btn-primary mt-3' %>
+      <div class="d-flex justify-content-center">
+        <%= link_to 'ADD GOAL', new_match_match_goal_path(@match), class: 'btn btn-primary mt-3' %>
+      </div>
     <% end %>
   </div>
   <div class="row m-0 justify-content-around">
@@ -30,7 +37,7 @@
         <div class="row justify-content-center">
           <div class="col-4 mb-2">
             <%= image_tag "#{User.find_by(name: @match.teams.where(home: true).first.captain).photo}.png", style: 'width: 100%' %>
-            <p class="m-0 text-center player-name"><%= @match.teams.where(home: true).first.captain %></p>
+            <p class="m-0 text-center player-name"><%= @match.teams.where(home: true).first.captain %><i class="fab fa-contao ml-2"></i></p>
           </div>
         </div>
         <div class="row m-0">
@@ -52,7 +59,7 @@
         <div class="row justify-content-center">
           <div class="col-4 mb-2">
             <%= image_tag "#{User.find_by(name: @match.teams.where(home: false).first.captain).photo}.png", style: 'width: 100%' %>
-            <p class="m-0 text-center player-name"><%= @match.teams.where(home: false).first.captain %></p>
+            <p class="m-0 text-center player-name"><%= @match.teams.where(home: false).first.captain %><i class="fab fa-contao ml-2"></i></p>
           </div>
         </div>
         <div class="row m-0">
