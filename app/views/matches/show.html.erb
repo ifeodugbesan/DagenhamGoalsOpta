@@ -6,7 +6,7 @@
   <div class="border rounded shadow p-3 my-3" style="background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://images.unsplash.com/photo-1510051640316-cee39563ddab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center;">
     <% unless  Date.today > @match.date %>
       <div class="d-flex justify-content-center">
-        <%= link_to 'refresh score', '', class: 'mb-3' %>
+        <%= link_to 'refresh score', '', class: 'mb-3 no-underline' %>
       </div>
     <% end %>
       <h1 class="w-100 text-center" style="font-size: 70px; font-family: 'Bungee Inline'"><%= @match.score %></h1>
