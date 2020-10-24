@@ -1,10 +1,10 @@
-<div class="container pb-5">
-  <div class="py-4">
-    <h1 class="text-center"><%= @match.title %> </h1>
-    <h6 class="text-center"><%= @match.date.strftime('%A %e %B %Y') %></h6>
+<div class="container">
+  <div class="border rounded shadow mt-3 p-3">
+    <h3 class="text-center font-weight-bold"><%= @match.title %></h3>
+    <p class="text-center mb-0" style="font-size: 14px;"><%= @match.date.strftime('%A %e %B %Y') %></p>
   </div>
-  <div class="border rounded shadow p-3 my-3">
-      <h1 class="w-100 text-center"><%= @match.score %></h1>
+  <div class="border rounded shadow p-3 my-3" style="background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://images.unsplash.com/photo-1510051640316-cee39563ddab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center;">
+      <h1 class="w-100 text-center" style="font-size: 70px; font-family: 'Bungee Inline'"><%= @match.score %></h1>
     <div class="row m-0 justify-content-between">
       <div class="col-12 p-0">
         <% @match.match_goals.each do |match_goal| %>
@@ -16,10 +16,12 @@
         <% end %>
       </div>
     </div>
-    <%#= link_to 'ADD GOAL', new_match_match_goal_path(@match), class: 'btn btn-primary mt-3' %>
+    <% unless  Date.today > @match.date %>
+      <%= link_to 'ADD GOAL', new_match_match_goal_path(@match), class: 'btn btn-primary mt-3' %>
+    <% end %>
   </div>
   <div class="row m-0 justify-content-around">
-    <div class="col-12 col-md-6 border rounded shadow py-3">
+    <div class="col-12 col-md-6 border rounded shadow py-3 mb-3 home-team" style="background-image: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('https://sh-prod-storage.s3.amazonaws.com/uploads/image/image/9774/big_CHANGING_1.JPG'); background-size: cover; background-position: center;">
       <% if @match.teams.empty? %>
         <%= link_to "ADD HOME TEAM", new_match_team_path(@match, home: true), class: 'btn btn-primary' %>
       <% end %>
@@ -27,21 +29,21 @@
         <h5 class="text-center font-weight-bold mb-3">TEAM <%= @match.teams.where(home: true).first.captain.upcase %></h5>
         <div class="row justify-content-center">
           <div class="col-4 mb-2">
-            <%= image_tag 'https://m.media-amazon.com/images/M/MV5BZjY5YTljMTItNDEwMC00ODA3LWE0MmEtNjI2YTY1NDNiZGY1XkEyXkFqcGdeQXVyMjUyNDk2ODc@._V1_.jpg', style: 'width: 100%' %>
-            <p class="m-0 text-center"><%= @match.teams.where(home: true).first.captain %></p>
+            <%= image_tag "#{User.find_by(name: @match.teams.where(home: true).first.captain).photo}.png", style: 'width: 100%' %>
+            <p class="m-0 text-center player-name"><%= @match.teams.where(home: true).first.captain %></p>
           </div>
         </div>
         <div class="row m-0">
         <% @match.teams.where(home: true).first.players.first(6).each do |player| %>
             <div class="col-4 mb-2">
-              <%= image_tag 'https://m.media-amazon.com/images/M/MV5BZjY5YTljMTItNDEwMC00ODA3LWE0MmEtNjI2YTY1NDNiZGY1XkEyXkFqcGdeQXVyMjUyNDk2ODc@._V1_.jpg', style: 'width: 100%' %>
-              <p class="m-0 text-center"><%= player.user.name %> </p>
+              <%= image_tag "#{player.user.photo}.png", style: 'width: 100%' %>
+              <p class="m-0 text-center player-name"><%= player.user.name %> </p>
             </div>
           <% end %>
         </div>
       <% end %>
     </div>
-    <div class="col-12 col-md-6 border rounded shadow py-3">
+    <div class="col-12 col-md-6 border rounded shadow py-3 mb-3" style="background-image: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('https://sh-prod-storage.s3.amazonaws.com/uploads/image/image/9774/big_CHANGING_1.JPG'); background-size: cover; background-position: center;">
       <% if @match.teams.size == 1 %>
         <%= link_to "ADD AWAY TEAM", new_match_team_path(@match, home: false), class: 'btn btn-primary' %>
       <% end %>
@@ -49,15 +51,15 @@
         <h5 class="text-center font-weight-bold mb-3">TEAM <%= @match.teams.where(home: false).first.captain.upcase %></h5>
         <div class="row justify-content-center">
           <div class="col-4 mb-2">
-            <%= image_tag 'https://m.media-amazon.com/images/M/MV5BZjY5YTljMTItNDEwMC00ODA3LWE0MmEtNjI2YTY1NDNiZGY1XkEyXkFqcGdeQXVyMjUyNDk2ODc@._V1_.jpg', style: 'width: 100%' %>
-            <p class="m-0 text-center"><%= @match.teams.where(home: false).first.captain %></p>
+            <%= image_tag "#{User.find_by(name: @match.teams.where(home: false).first.captain).photo}.png", style: 'width: 100%' %>
+            <p class="m-0 text-center player-name"><%= @match.teams.where(home: false).first.captain %></p>
           </div>
         </div>
         <div class="row m-0">
         <% @match.teams.where(home: false).first.players.first(6).each do |player| %>
             <div class="col-4 mb-2">
-              <%= image_tag 'https://m.media-amazon.com/images/M/MV5BZjY5YTljMTItNDEwMC00ODA3LWE0MmEtNjI2YTY1NDNiZGY1XkEyXkFqcGdeQXVyMjUyNDk2ODc@._V1_.jpg', style: 'width: 100%' %>
-              <p class="m-0 text-center"><%= player.user.name %> </p>
+              <%= image_tag "#{player.user.photo}.png", style: 'width: 100%' %>
+              <p class="m-0 text-center player-name"><%= player.user.name %> </p>
             </div>
           <% end %>
         </div>

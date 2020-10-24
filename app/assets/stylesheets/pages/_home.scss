@@ -10,3 +10,28 @@
     font-size: 12px;
   }
 }
+
+///////////// MATCH INDEX ///////////////
+
+.no-decoration {
+  color: #000;
+  &:hover {
+    text-decoration: none;
+    color: #000;
+  }
+}
+
+///////////// MATCH SHOW ///////////////
+
+.player-name {
+  @include media-breakpoint-down(lg) {
+    font-size: 12px;
+  }
+}
+
+.home-team {
+  padding-right: 16px;
+  @include media-breakpoint-down(sm) {
+    margin-right: 0;
+  }
+}

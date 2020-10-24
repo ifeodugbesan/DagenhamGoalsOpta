@@ -1,12 +1,26 @@
-<div class="container">
-  <%= link_to 'NEW MATCH', new_match_path, class: 'btn btn-block btn-primary my-3' %>
+<div class="container pt-3">
+  <%#= link_to 'NEW MATCH', new_match_path, class: 'btn btn-block btn-primary my-3' %>
   <div class="row">
     <% @matches.each do |match| %>
       <div class="col-12 col-md-6 col-lg-4">
-        <%= link_to match_path(match) do %>
-          <div class="card rounded shadow p-3">
-            <h1><%= match.title %></h1>
-            <p><%= match.date.strftime('%d-%m-%y') %></p>
+        <%= link_to match_path(match), class: 'no-decoration' do %>
+          <div class="card rounded shadow">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+              <% if match.teams.size == 2 %>
+                <div class="d-flex">
+                  <div class="w-50">
+                    <%= image_tag "#{match.teams.first.players.last.user.photo}.png", style: 'width: 100%' %>
+                  </div>
+                  <div class="w-50">
+                    <%= image_tag "#{match.teams.last.players.last.user.photo}.png", style: 'width: 100%' %>
+                  </div>
+                </div>
+              <% end %>
+              <div class="p-2 d-flex flex-column justify-content-center align-items-center">
+                <h5 class="mb-0 font-weight-bold"><%= match.title %></h5>
+                <p class="mb-0" style="font-size: 14px;"><%= match.date.strftime('%A %e %B %Y') %></p>
+              </div>
+            </div>
           </div>
         <% end %>
       </div>

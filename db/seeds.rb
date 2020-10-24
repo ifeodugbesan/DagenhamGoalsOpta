@@ -30,5 +30,6 @@
 # User.create!(name: 'Kunle', email: 'kunle@poplar.com', password: '123456')
 # User.create!(name: 'Adebambo', email: 'adebambo@poplar.com', password: '123456')
 # User.create!(name: 'Phil', email: 'phil@poplar.com', password: '123456')
-User.create!(name: 'OG', email: 'og@poplar.com', password: '123456')
-User.create!(name: 'No Assist', email: 'noassist@poplar.com', password: '123456')
+User.create!(name: 'Niz', email: 'niz@poplar.com', password: '123456')
+# User.create!(name: 'OG', email: 'og@poplar.com', password: '123456')
+# User.create!(name: 'No Assist', email: 'noassist@poplar.com', password: '123456')
