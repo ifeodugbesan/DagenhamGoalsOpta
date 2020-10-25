@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def stats
-    matches = User.where.not(name: 'OG').where.not(name: 'No Assist').sort_by {|user| user.matches.size }.reverse
+    matches = User.where.not(name: 'OG Home').where.not(name: 'OG Away').where.not(name: 'No Assist').sort_by {|user| user.matches.size }.reverse
     goals = matches.sort_by {|user| user.goals.size }.reverse
     @players = goals.sort_by {|user| user.goals.size + user.assists.size }.reverse
   end

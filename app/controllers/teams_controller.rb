@@ -8,7 +8,7 @@ class TeamsController < ApplicationController
 
   def new
     @team = Team.new
-    @users = User.where.not(name: 'OG').where.not(name: 'No Assist').order(name: :asc)
+    @users = User.where.not(name: 'OG Home').where.not(name: 'OG Away').where.not(name: 'No Assist').order(name: :asc)
   end
 
   def create

@@ -8,7 +8,7 @@
           <% @users.all.each do |user| %>
             <div class="col-3 px-1 my-1">
               <input class="form-check-input radio_buttons required d-none" type="radio" value="<%= user.id %>" name="match_goal[goal]" id="match_goal_goal_<%= user.id %>" data-target="match-goal.goal">
-              <label class="form-check-label collection_radio_buttons match-goal-player border rounded shadow text-truncate" for="match_goal_goal_<%= user.id %>" data-action="click->match-goal#toggleGoalActive">
+              <label class="h-100 form-check-label collection_radio_buttons match-goal-player border rounded shadow" for="match_goal_goal_<%= user.id %>" data-action="click->match-goal#toggleGoalActive">
                 <%= image_tag "#{user.photo}.png", style: 'width: 100%' %>
                 <div class="py-1 d-flex justify-content-center bg-white">
                   <p class="text-center m-0" style="font-size: 10px;"><%= user.name %></p>
@@ -17,11 +17,18 @@
             </div>
           <% end %>
           <div class="col-3 px-1 my-1">
-            <input class="form-check-input radio_buttons required d-none" type="radio" value="<%= @og.id %>" name="match_goal[goal]" id="match_goal_goal_<%= @og.id %>" data-target="match-goal.goal">
-            <label class="form-check-label collection_radio_buttons match-goal-player border rounded shadow text-truncate" for="match_goal_goal_<%= @og.id %>" data-action="click->match-goal#toggleGoalActive">
-              <%= image_tag "#{@og.photo}.png", style: 'width: 100%' %>
-              <div class="py-1 d-flex justify-content-center bg-white">
-                <p class="text-center m-0" style="font-size: 10px;"><%= @og.name %></p>
+            <input class="form-check-input radio_buttons required d-none" type="radio" value="<%= @oghome.id %>" name="match_goal[goal]" id="match_goal_goal_<%= @oghome.id %>" data-target="match-goal.goal">
+            <label class="h-100 w-100 d-flex flex-column form-check-label collection_radio_buttons match-goal-player border rounded shadow" for="match_goal_goal_<%= @oghome.id %>" data-action="click->match-goal#toggleGoalActive">
+              <div class="bg white w-100 flex-grow-1 d-flex justify-content-center align-items-center">
+                <h6 class="text-center">OG FOR TEAM <%= @match.teams.first.captain.upcase %></h6>
+              </div>
+            </label>
+          </div>
+          <div class="col-3 px-1 my-1">
+            <input class="form-check-input radio_buttons required d-none" type="radio" value="<%= @ogaway.id %>" name="match_goal[goal]" id="match_goal_goal_<%= @ogaway.id %>" data-target="match-goal.goal">
+            <label class="h-100 w-100 d-flex flex-column form-check-label collection_radio_buttons match-goal-player border rounded shadow" for="match_goal_goal_<%= @ogaway.id %>" data-action="click->match-goal#toggleGoalActive">
+              <div class="bg white w-100 flex-grow-1 d-flex justify-content-center align-items-center">
+                <h6 class="text-center">OG FOR TEAM <%= @match.teams.last.captain.upcase %></h6>
               </div>
             </label>
           </div>
@@ -36,7 +43,7 @@
           <% @users.all.each do |user| %>
             <div class="col-3 px-1 my-1">
               <input class="form-check-input radio_buttons required d-none" type="radio" value="<%= user.id %>" name="match_goal[assist]" id="match_goal_assist_<%= user.id %>" data-target="match-goal.assist">
-              <label class="form-check-label collection_radio_buttons match-goal-player border rounded shadow text-truncate" for="match_goal_assist_<%= user.id %>" data-action="click->match-goal#toggleAssistActive">
+              <label class="form-check-label collection_radio_buttons match-goal-player border rounded shadow" for="match_goal_assist_<%= user.id %>" data-action="click->match-goal#toggleAssistActive">
                 <%= image_tag "#{user.photo}.png", style: 'width: 100%' %>
                 <div class="py-1 d-flex justify-content-center bg-white">
                   <p class="text-center m-0" style="font-size: 10px;"><%= user.name %></p>
@@ -46,7 +53,7 @@
           <% end %>
           <div class="col-3 px-1 my-1">
             <input class="form-check-input radio_buttons required d-none" type="radio" value="<%= @no_assist.id %>" name="match_goal[assist]" id="match_goal_assist_<%= @no_assist.id %>" data-target="match-goal.assist">
-            <label class="form-check-label collection_radio_buttons match-goal-player border rounded shadow text-truncate" for="match_goal_assist_<%= @no_assist.id %>" data-action="click->match-goal#toggleAssistActive">
+            <label class="form-check-label collection_radio_buttons match-goal-player border rounded shadow" for="match_goal_assist_<%= @no_assist.id %>" data-action="click->match-goal#toggleAssistActive">
               <%= image_tag "#{@no_assist.photo}.png", style: 'width: 100%' %>
               <div class="py-1 d-flex justify-content-center bg-white">
                 <p class="text-center m-0" style="font-size: 10px;"><%= @no_assist.name %></p>
