@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
+  get 'opta_poplar', to: 'pages#stats'
   resources :matches do
     resources :match_goals, only: [:new, :create, :edit, :update]
     resources :teams, only: [:new, :create, :edit, :update]
