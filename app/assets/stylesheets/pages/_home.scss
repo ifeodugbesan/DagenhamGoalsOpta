@@ -43,3 +43,25 @@ body {
 .no-underline {
   text-decoration: none !important;
 }
+
+
+//////////// TEAM NEW /////////////////
+
+.player-active {
+  border: 2px solid #dda15e !important;
+}
+
+.disabled {
+  pointer-events: none !important;
+  opacity: 0.3 !important;
+}
+
+///////////// MATCH GOALS NEW ////////////////
+
+.match-goal-player {
+  opacity: 0.6;
+}
+.match-goal-active {
+  border: 2px solid #dda15e !important;
+  opacity: 1 !important;
+}

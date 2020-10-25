@@ -1,2 +1,9 @@
-<h1>Matches#edit</h1>
-<p>Find me in app/views/matches/edit.html.erb</p>
+<div class="container">
+  <div class="p-3">
+    <%= simple_form_for @match do |f| %>
+      <%= f.input :title %>
+      <%= f.input :date, html5: true %>
+      <%= f.submit class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

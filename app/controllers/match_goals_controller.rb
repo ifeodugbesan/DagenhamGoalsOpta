@@ -2,6 +2,9 @@ class MatchGoalsController < ApplicationController
   before_action :find_match, only: [:new, :create]
   def new
     @match_goal = MatchGoal.new
+    @users = @match.users
+    @og = User.where(name: 'OG').first
+    @no_assist = User.where(name: 'No Assist').first
   end
 
   def create
