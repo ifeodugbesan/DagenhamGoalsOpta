@@ -1,7 +1,7 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :edit, :update, :destroy, :result_confirmation]
   def index
-    @matches = Match.all.reverse
+    @matches = Match.all.order(created_at: :desc)
   end
 
   def show

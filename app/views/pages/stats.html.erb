@@ -38,7 +38,7 @@
           <td class="p-2 border-right text-center"><%= player.goals.size + player.assists.size %></td>
           <td class="p-2 border-right text-center"><%= player.teams.where(winners: true).size %></td>
           <td class="p-2 border-right text-center"><%= player.teams.where(losers:true).size %></td>
-          <td class="p-2 border-right text-center"><%= player.matches.any? ? (player.teams.where(winners: true).size.to_f / player.matches.size * 100).round(2) : '0.0' %>%</td>
+          <td class="p-2 border-right text-center"><%= player.matches.any? ? "#{(player.teams.where(winners: true).size.to_f / player.matches.size * 100).round(2)}%" : 'N/A' %></td>
         </tr>
       <% end %>
     </tbody>
