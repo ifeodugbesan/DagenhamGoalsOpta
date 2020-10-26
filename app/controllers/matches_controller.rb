@@ -1,10 +1,11 @@
 class MatchesController < ApplicationController
-  before_action :set_match, only: [:show, :edit, :update, :destroy]
+  before_action :set_match, only: [:show, :edit, :update, :destroy, :result_confirmation]
   def index
     @matches = Match.all.reverse
   end
 
   def show
+    @winners = @match.teams.where(winners: true).first
   end
 
   def new
@@ -31,6 +32,20 @@ class MatchesController < ApplicationController
   def destroy
     @match.destroy
     redirect_to matches_path
+  end
+
+  def result_confirmation
+    home_goals = @match.teams.first.goals.size
+    away_goals = @match.teams.last.goals.size
+    if home_goals > away_goals
+      @match.teams.first.update(winners: true)
+      @match.teams.last.update(losers: true)
+    elsif away_goals > home_goals
+      @match.teams.last.update(winners: true)
+      @match.teams.first.update(losers: true)
+    end
+    @match.update(result_confirmed: true)
+    redirect_to request.referrer
   end
 
   private

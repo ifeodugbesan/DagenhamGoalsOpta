@@ -13,7 +13,7 @@ class MatchGoalsController < ApplicationController
     assister = User.find(params[:match_goal][:assist])
     goal = Goal.create(user: scorer)
     assist = Assist.create(user: assister)
-    if scorer.name == "OG Home" || "OG Away"
+    if scorer.name == ("OG Home" || "OG Away")
       @team = scorer.name == "OG Home" ? @match.teams.first : @match.teams.last
     else
       @team = @match.teams.first.users.include?(scorer) ? @match.teams.first : @match.teams.last

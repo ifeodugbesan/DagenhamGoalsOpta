@@ -31,7 +31,7 @@
   <body data-controller="common">
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-    <div data-target="common.container">
+    <div data-target="common.container", style="overflow-x: scroll;">
       <%= yield %>
     </div>
   </body>

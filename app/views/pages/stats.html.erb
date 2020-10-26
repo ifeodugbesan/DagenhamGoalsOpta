@@ -1,5 +1,5 @@
-<div class="d-flex justify-content-center align-items-center">
-  <table class=" m-3 rounded border shadow">
+<div class="mb-3 d-flex justify-content-start align-items-center">
+  <table class="rounded border shadow">
     <thead>
       <tr class="border-bottom">
         <td class="p-2 border-right text-center">
@@ -14,29 +14,31 @@
         <td class="p-2 border-right text-center">
           <i class="fas fa-hands-helping"></i>
         </td>
-        <td class="p-2 border-right text-center">
+        <td class="p-2 border-right text-center text-center">
           <i class="fas fa-futbol"></i> + <i class="fas fa-hands-helping"></i>
         </td>
-        <!--  <td class="p-2 border-right">
+         <td class="p-2 border-right text-center">
           <strong>W</strong>
         </td>
-        <td class="p-2 border-right">
+        <td class="p-2 border-right text-center">
           <STRONG>L</STRONG>
         </td>
-        <td class="p-2 border-right">
+        <td class="p-2 border-right text-center">
           <STRONG>W %</STRONG>
-        </td> -->
-
+        </td>
       </tr>
     </thead>
     <tbody>
       <% @players.each do |player| %>
         <tr class="border-bottom">
-          <td class="border-right pl-0 py-0 pr-2"><%= image_tag "#{player.photo}.png", height: 50, class: 'mr-2' %><%= player.name %></td>
+          <td class="d-flex justify-content-start align-items-center border-right pl-0 py-0 pr-2"><%= image_tag "#{player.photo}.png", height: 50, class: 'mr-1' %><span class="font-14 text-truncate"><%= player.name %></span></td>
           <td class="p-2 border-right text-center"><%= player.matches.size %></td>
           <td class="p-2 border-right text-center"><%= player.goals.size %></td>
           <td class="p-2 border-right text-center"><%= player.assists.size %></td>
           <td class="p-2 border-right text-center"><%= player.goals.size + player.assists.size %></td>
+          <td class="p-2 border-right text-center"><%= player.teams.where(winners: true).size %></td>
+          <td class="p-2 border-right text-center"><%= player.teams.where(losers:true).size %></td>
+          <td class="p-2 border-right text-center"><%= (player.teams.where(winners: true).size.to_f / player.matches.size * 100).round(2) %>%</td>
         </tr>
       <% end %>
     </tbody>

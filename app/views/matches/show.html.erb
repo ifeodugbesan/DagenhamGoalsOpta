@@ -4,10 +4,15 @@
     <p class="text-center mb-0" style="font-size: 14px;"><%= @match.date.strftime('%A %e %B %Y') %></p>
   </div>
   <div class="border rounded shadow p-3 my-3" style="background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://images.unsplash.com/photo-1510051640316-cee39563ddab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center;">
-    <% unless  Date.today > @match.date %>
+    <% unless Date.today > @match.date || @match.result_confirmed %>
       <div class="d-flex justify-content-center">
         <%= link_to 'refresh score', '', class: 'mb-3 no-underline' %>
       </div>
+    <% end %>
+    <% if @match.result_confirmed && @winners.present? %>
+      <h5 class="w-100 text-center">RESULT: <strong>TEAM <%= @winners.captain.upcase %> WINS!</strong> 🏆</h5>
+    <% elsif @match.result_confirmed && !@winners.present? %>
+      <h5 class="w-100 text-center"><strong>RESULT: DRAW!</strong> </h5>
     <% end %>
       <h1 class="w-100 text-center" style="font-size: 70px; font-family: 'Bungee Inline'"><%= @match.score %></h1>
     <div class="row m-0 justify-content-between">
@@ -21,11 +26,14 @@
         <% end %>
       </div>
     </div>
-    <% unless  Date.today > @match.date %>
-      <div class="d-flex justify-content-center">
-        <%= link_to 'ADD GOAL', new_match_match_goal_path(@match), class: 'btn btn-primary mt-3' %>
-      </div>
-    <% end %>
+    <div class="d-flex justify-content-center">
+      <% unless Date.today > @match.date || @match.result_confirmed %>
+          <%= link_to 'ADD GOAL', new_match_match_goal_path(@match), class: 'btn btn-primary mt-3 mx-2' %>
+      <% end %>
+      <% unless @match.result_confirmed %>
+        <%= link_to 'CONFIRM RESULT', result_confirmation_match_path(@match), class: 'btn btn-primary mt-3 mx-2', data: { confirm: "Are you sure you want to confirm this result?" } %>
+      <% end %>
+    </div>
   </div>
   <div class="row m-0 justify-content-around">
     <div class="col-12 col-md-6 border rounded shadow py-3 mb-3 home-team" style="background-image: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('https://sh-prod-storage.s3.amazonaws.com/uploads/image/image/9774/big_CHANGING_1.JPG'); background-size: cover; background-position: center;">

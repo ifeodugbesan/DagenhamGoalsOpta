@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :matches do
     resources :match_goals, only: [:new, :create, :edit, :update]
     resources :teams, only: [:new, :create, :edit, :update]
+    member do
+      get 'result_confirmation'
+    end
   end
   resources :match_goals, only: [:destroy]
   resources :teams, only: [:destroy]
