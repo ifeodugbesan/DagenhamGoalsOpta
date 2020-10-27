@@ -1,0 +1,46 @@
+<div class="container pt-3 pb-3">
+  <%#= link_to 'NEW MATCH', new_match_path, class: 'btn btn-block btn-primary my-3' %>
+  <div class="row">
+    <% @players.all.each do |player| %>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="player-card shadow rounded my-3 pb-2">
+          <%= image_tag "#{player.photo}.png", style: 'width: 100%' %>
+          <div class="py-1 d-flex justify-content-center bg-white border-bottom">
+            <h3 class="text-center py-2 m-0 font-weight-bold"><%= player.name %></h3>
+          </div>
+          <div class="row m-0">
+            <div class="col-4 pt-2 pb-1 d-flex flex-column justify-content-center align-items-center">
+              <p class="m-0 text-center font-weight-bold">Played</p>
+              <p class="m-0 text-center"><%= player.matches.where(result_confirmed: true).size %></p>
+            </div>
+            <div class="col-4 pt-2 pb-1 d-flex flex-column justify-content-center align-items-center">
+              <p class="m-0 text-center font-weight-bold">Goals</p>
+              <p class="m-0 text-center"><%= player.goals.size %></p>
+            </div>
+            <div class="col-4 pt-2 pb-1 d-flex flex-column justify-content-center align-items-center">
+              <p class="m-0 text-center font-weight-bold">Assists</p>
+              <p class="m-0 text-center"><%= player.assists.size %></p>
+            </div>
+            <div class="col-4 pt-2 pb-1 d-flex flex-column justify-content-center align-items-center">
+              <p class="m-0 text-center font-weight-bold">G + A</p>
+              <p class="m-0 text-center"><%= player.goals.size + player.assists.size %></p>
+            </div>
+            <div class="col-4 pt-2 pb-1 d-flex flex-column justify-content-center align-items-center">
+              <p class="m-0 text-center font-weight-bold">Wins</p>
+              <p class="m-0 text-center"><%= player.teams.where(winners: true).size %></p>
+            </div>
+            <div class="col-4 pt-2 pb-1 d-flex flex-column justify-content-center align-items-center">
+              <p class="m-0 text-center font-weight-bold">Losses</p>
+              <p class="m-0 text-center"><%= player.teams.where(losers:true).size %></p>
+            </div>
+            <div class="col-12 py-1 d-flex flex-column justify-content-center align-items-center">
+              <p class="m-0 text-center font-weight-bold">Win %</p>
+              <p class="m-0 text-center"><%= player.matches.any? ? "#{(player.teams.where(winners: true).size.to_f / player.matches.where(result_confirmed: true).size * 100).round(0)}%" : 'N/A' %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
