@@ -9,10 +9,10 @@
               <% if match.teams.size == 2 %>
                 <div class="d-flex">
                   <div class="w-50">
-                    <%= image_tag "#{match.teams.first.players.last.user.photo}.png", style: 'width: 100%' %>
+                    <%= image_tag "#{match.teams.first.players.last.user.photo}", style: 'width: 100%' %>
                   </div>
                   <div class="w-50">
-                    <%= image_tag "#{match.teams.last.players.last.user.photo}.png", style: 'width: 100%' %>
+                    <%= image_tag "#{match.teams.last.players.last.user.photo}", style: 'width: 100%' %>
                   </div>
                 </div>
               <% end %>

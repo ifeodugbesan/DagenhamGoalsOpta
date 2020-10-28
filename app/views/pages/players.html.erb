@@ -4,7 +4,7 @@
     <% @players.all.each do |player| %>
       <div class="col-12 col-md-6 col-lg-4">
         <div class="player-card shadow rounded my-3 pb-2">
-          <%= image_tag "#{player.photo}.png", style: 'width: 100%' %>
+          <%= image_tag "#{player.photo}", style: 'width: 100%' %>
           <div class="py-1 d-flex justify-content-center bg-white border-bottom">
             <h3 class="text-center py-2 m-0 font-weight-bold"><%= player.name %></h3>
           </div>

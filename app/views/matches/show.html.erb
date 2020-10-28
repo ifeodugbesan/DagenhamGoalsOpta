@@ -44,14 +44,14 @@
         <h5 class="text-center font-weight-bold mb-3">TEAM <%= @match.teams.where(home: true).first.captain.upcase %></h5>
         <div class="row justify-content-center">
           <div class="col-4 mb-2">
-            <%= image_tag "#{User.find_by(name: @match.teams.where(home: true).first.captain).photo}.png", style: 'width: 100%' %>
+            <%= image_tag "#{User.find_by(name: @match.teams.where(home: true).first.captain).photo}", style: 'width: 100%' %>
             <p class="m-0 text-center player-name"><%= @match.teams.where(home: true).first.captain %><i class="fab fa-contao ml-2"></i></p>
           </div>
         </div>
         <div class="row m-0">
         <% @match.teams.where(home: true).first.players.first(6).each do |player| %>
             <div class="col-4 mb-2">
-              <%= image_tag "#{player.user.photo}.png", style: 'width: 100%' %>
+              <%= image_tag "#{player.user.photo}", style: 'width: 100%' %>
               <p class="m-0 text-center player-name"><%= player.user.name %> </p>
             </div>
           <% end %>
@@ -66,14 +66,14 @@
         <h5 class="text-center font-weight-bold mb-3">TEAM <%= @match.teams.where(home: false).first.captain.upcase %></h5>
         <div class="row justify-content-center">
           <div class="col-4 mb-2">
-            <%= image_tag "#{User.find_by(name: @match.teams.where(home: false).first.captain).photo}.png", style: 'width: 100%' %>
+            <%= image_tag "#{User.find_by(name: @match.teams.where(home: false).first.captain).photo}", style: 'width: 100%' %>
             <p class="m-0 text-center player-name"><%= @match.teams.where(home: false).first.captain %><i class="fab fa-contao ml-2"></i></p>
           </div>
         </div>
         <div class="row m-0">
         <% @match.teams.where(home: false).first.players.first(6).each do |player| %>
             <div class="col-4 mb-2">
-              <%= image_tag "#{player.user.photo}.png", style: 'width: 100%' %>
+              <%= image_tag "#{player.user.photo}", style: 'width: 100%' %>
               <p class="m-0 text-center player-name"><%= player.user.name %> </p>
             </div>
           <% end %>

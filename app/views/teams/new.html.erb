@@ -10,7 +10,7 @@
             <div class="col-3 px-1 my-1">
               <input class="form-check-input check_boxes optional d-none" type="checkbox" value="<%= user.id %>" name="team[players][]" id="team_players_<%= user.id %>" data-target="team.player">
               <label class="form-check-label collection_check_boxes border rounded shadow text-truncate" for="team_players_<%= user.id %>" data-action="click->team#toggleActive">
-                  <%= image_tag "#{user.photo}.png", style: 'width: 100%' %>
+                  <%= image_tag "#{user.photo}", style: 'width: 100%' %>
                   <div class="py-1 d-flex justify-content-center bg-white">
                     <p class="text-center m-0" style="font-size: 10px;"><%= user.name %></p>
                   </div>
