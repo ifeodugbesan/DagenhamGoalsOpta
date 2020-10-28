@@ -35,7 +35,7 @@
             </div>
             <div class="col-12 py-1 d-flex flex-column justify-content-center align-items-center">
               <p class="m-0 text-center font-weight-bold">Win %</p>
-              <p class="m-0 text-center"><%= player.matches.any? ? "#{(player.teams.where(winners: true).size.to_f / player.matches.where(result_confirmed: true).size * 100).round}%" : 'N/A' %></p>
+              <p class="m-0 text-center"><%= player.matches.any? ? "#{(player.teams.where(winners: true).size.to_f / player.matches.where(result_confirmed: true).size * 100).round(2)}%" : 'N/A' %></p>
             </div>
           </div>
         </div>
