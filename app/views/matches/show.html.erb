@@ -3,7 +3,7 @@
     <h3 class="text-center font-weight-bold"><%= @match.title %></h3>
     <p class="text-center mb-0" style="font-size: 14px;"><%= @match.date.strftime('%A %e %B %Y') %></p>
   </div>
-  <div class="border rounded shadow p-3 my-3" style="background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://images.unsplash.com/photo-1510051640316-cee39563ddab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center;">
+  <div class="rounded shadow p-3 my-3" style="background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://images.unsplash.com/photo-1510051640316-cee39563ddab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; border: 5px solid #000;">
     <% unless Date.today > @match.date || @match.result_confirmed %>
       <div class="d-flex justify-content-center">
         <%= link_to 'refresh score', '', class: 'mb-3 no-underline' %>
@@ -35,50 +35,66 @@
       <% end %>
     </div>
   </div>
-  <div class="row m-0 justify-content-around">
-    <div class="col-12 col-md-6 border rounded shadow py-3 mb-3 home-team" style="background-image: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('https://sh-prod-storage.s3.amazonaws.com/uploads/image/image/9774/big_CHANGING_1.JPG'); background-size: cover; background-position: center;">
-      <% if @match.teams.empty? %>
-        <%= link_to "ADD HOME TEAM", new_match_team_path(@match, home: true), class: 'btn btn-primary' %>
-      <% end %>
-      <% if @match.teams.where(home: true).any? %>
-        <h5 class="text-center font-weight-bold mb-3">TEAM <%= @match.teams.where(home: true).first.captain.upcase %></h5>
-        <div class="row justify-content-center">
-          <div class="col-4 mb-2">
-            <%= image_tag "#{User.find_by(name: @match.teams.where(home: true).first.captain).photo}", style: 'width: 100%' %>
-            <p class="m-0 text-center player-name"><%= @match.teams.where(home: true).first.captain %><i class="fab fa-contao ml-2"></i></p>
-          </div>
-        </div>
-        <div class="row m-0">
-        <% @match.teams.where(home: true).first.players.first(6).each do |player| %>
-            <div class="col-4 mb-2">
-              <%= image_tag "#{player.user.photo}", style: 'width: 100%' %>
-              <p class="m-0 text-center player-name"><%= player.user.name %> </p>
+  <div class="row pb-3 justify-content-around">
+    <div class="col-12 col-md-6 pr-3 pr-md-2">
+      <div class="rounded shadow mb-3 p-3 home-team" style="border: 5px solid #D68D38; background: #FFF;">
+        <% if @match.teams.empty? %>
+          <%= link_to "ADD HOME TEAM", new_match_team_path(@match, home: true), class: 'btn btn-primary' %>
+        <% end %>
+        <% if @match.teams.where(home: true).any? %>
+          <h5 class="text-center font-weight-bold mb-3">TEAM <%= @match.teams.where(home: true).first.captain.upcase %></h5>
+          <div class="row m-0 justify-content-center">
+            <div class="col-4 mb-2 d-flex justify-content-center align-items-center p-3">
+              <%= image_tag 'nike-black.png', class: 'w-75' %>
             </div>
-          <% end %>
-        </div>
-      <% end %>
+            <div class="col-4 mb-2">
+              <%= image_tag "#{User.find_by(name: @match.teams.where(home: true).first.captain).photo}", style: 'width: 100%' %>
+              <p class="m-0 text-center player-name"><%= @match.teams.where(home: true).first.captain %><i class="fab fa-contao ml-2"></i></p>
+            </div>
+            <div class="col-4 mb-2 d-flex justify-content-center align-items-center p-3">
+              <%= image_tag 'poplarfc.png', class: 'w-75' %>
+            </div>
+          </div>
+          <div class="row m-0">
+          <% @match.teams.where(home: true).first.players.first(6).each do |player| %>
+              <div class="col-4 mb-2">
+                <%= image_tag "#{player.user.photo}", style: 'width: 100%' %>
+                <p class="m-0 text-center player-name"><%= player.user.name %> </p>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div class="col-12 col-md-6 border rounded shadow py-3 mb-3" style="background-image: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('https://sh-prod-storage.s3.amazonaws.com/uploads/image/image/9774/big_CHANGING_1.JPG'); background-size: cover; background-position: center;">
-      <% if @match.teams.size == 1 %>
-        <%= link_to "ADD AWAY TEAM", new_match_team_path(@match, home: false), class: 'btn btn-primary' %>
-      <% end %>
-      <% if @match.teams.where(home: false).any? %>
-        <h5 class="text-center font-weight-bold mb-3">TEAM <%= @match.teams.where(home: false).first.captain.upcase %></h5>
-        <div class="row justify-content-center">
-          <div class="col-4 mb-2">
-            <%= image_tag "#{User.find_by(name: @match.teams.where(home: false).first.captain).photo}", style: 'width: 100%' %>
-            <p class="m-0 text-center player-name"><%= @match.teams.where(home: false).first.captain %><i class="fab fa-contao ml-2"></i></p>
-          </div>
-        </div>
-        <div class="row m-0">
-        <% @match.teams.where(home: false).first.players.first(6).each do |player| %>
-            <div class="col-4 mb-2">
-              <%= image_tag "#{player.user.photo}", style: 'width: 100%' %>
-              <p class="m-0 text-center player-name"><%= player.user.name %> </p>
+    <div class="col-12 col-md-6 pl-3 pl-md-2">
+      <div class="rounded shadow mb-3 p-3" style="border: 5px solid #FBCF2E; background: #333D7A;">
+        <% if @match.teams.size == 1 %>
+          <%= link_to "ADD AWAY TEAM", new_match_team_path(@match, home: false), class: 'btn btn-primary' %>
+        <% end %>
+        <% if @match.teams.where(home: false).any? %>
+          <h5 class="text-center font-weight-bold mb-3 text-light">TEAM <%= @match.teams.where(home: false).first.captain.upcase %></h5>
+          <div class="row m-0 justify-content-center">
+            <div class="col-4 mb-2 d-flex justify-content-center align-items-center p-3">
+              <%= image_tag 'nike-white.png', class: 'w-75' %>
             </div>
-          <% end %>
-        </div>
-      <% end %>
+            <div class="col-4 mb-2">
+              <%= image_tag "#{User.find_by(name: @match.teams.where(home: false).first.captain).photo}", style: 'width: 100%' %>
+              <p class="m-0 text-center text-light player-name"><%= @match.teams.where(home: false).first.captain %><i class="fab fa-contao ml-2"></i></p>
+            </div>
+            <div class="col-4 mb-2 d-flex justify-content-center align-items-center p-3">
+              <%= image_tag 'poplarfc-white.png', class: 'w-75' %>
+            </div>
+          </div>
+          <div class="row m-0">
+          <% @match.teams.where(home: false).first.players.first(6).each do |player| %>
+              <div class="col-4 mb-2">
+                <%= image_tag "#{player.user.photo}", style: 'width: 100%' %>
+                <p class="m-0 text-center text-light player-name"><%= player.user.name %> </p>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
   <% if @match.youtube %>
