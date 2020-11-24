@@ -10,3 +10,128 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+////////////////////////////////// PWA NAVBAR //////////////////////////////
+
+.pwa-navbar-spacer {
+  height: 60px;
+  display: none;
+}
+
+.pwa-navbar {
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  z-index: 2500;
+  bottom: 0;
+  background: #E4E4E4;
+  border-top: 1px solid #8A8A8A;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.pwa-top-bar {
+  display: none;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+  padding: 0 20px;
+  position: fixed;
+  z-index: 2500;
+  top: 0;
+  i {
+    font-size: 26px;
+    color: #4E77B7;
+  }
+}
+
+.pwa-top-bar-spacer {
+  height: 60px;
+  display: none;
+}
+
+.pwa-navbar-section {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pwa-navbar-icon {
+  height: 26px;
+}
+
+.pwa-navbar-text {
+  font-size: 10px;
+  font-weight: bold;
+  margin: 2px 0 0 0;
+  color: #8A8A8A;
+  letter-spacing: 1px;
+}
+
+.pwa-active {
+  color: #000;
+}
+
+.pwa-logo {
+  height: 55px;
+  margin-right: 8px;
+  @include media-breakpoint-down(sm) {
+    height: 40px;
+  }
+}
+
+.pwa-logo-text {
+  height: 26px;
+  @include media-breakpoint-down(sm) {
+    height: 20px;
+  }
+}
+
+@media only screen
+  and (device-width: 375px)
+  and (device-height: 812px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    .pwa-navbar-spacer {
+      height: 81px;
+    }
+    .pwa-navbar {
+      height: 80px;
+      padding-bottom: 20px;
+    }
+}
+
+@media only screen
+  and (device-width: 414px)
+  and (device-height: 896px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    .pwa-navbar-spacer {
+      height: 81px;
+    }
+    .pwa-navbar {
+      height: 80px;
+      padding-bottom: 20px;
+    }
+}
+
+@media only screen
+  and (device-width: 414px)
+  and (device-height: 896px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    .pwa-navbar-spacer {
+      height: 81px;
+    }
+    .pwa-navbar {
+      height: 80px;
+      padding-bottom: 20px;
+    }
+}
+
+// PWA NAVBAR
