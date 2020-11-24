@@ -1,0 +1,45 @@
+<div class="pwa-navbar-container" data-controller="navbar">
+  <div class="pwa-navbar-spacer" data-target="navbar.pwaNavbarSpacer"></div>
+  <div class="pwa-navbar <%= 'grey-background' if @dark_mode %>" data-target="navbar.pwaNavbar">
+    <%= link_to root_path, class: "pwa-navbar-section no-decoration" do %>
+      <div class="pwa-navbar-section">
+        <% if params[:controller] == 'pages' && params[:action] == 'home' %>
+          <%= image_tag 'home-black.png', class: 'pwa-navbar-icon' %>
+        <% else %>
+          <%= image_tag 'home.png', class: 'pwa-navbar-icon' %>
+        <% end %>
+        <p class="pwa-navbar-text <%= (params[:controller] == 'pages' && params[:action] == 'home') ? 'pwa-active' : '' %>">HOME</p>
+      </div>
+    <% end %>
+    <%= link_to matches_path, class: "pwa-navbar-section no-decoration" do %>
+      <div class="pwa-navbar-section">
+        <% if params[:controller] == 'matches' %>
+          <%= image_tag 'matches-black.png', class: 'pwa-navbar-icon' %>
+        <% else %>
+          <%= image_tag 'matches.png', class: 'pwa-navbar-icon' %>
+        <% end %>
+        <p class="pwa-navbar-text <%= params[:controller] == 'matches' ? 'pwa-active' : '' %>">MATCHES</p>
+      </div>
+    <% end %>
+    <%= link_to players_path, class: 'pwa-navbar-section no-decoration' do %>
+      <div class="pwa-navbar-section">
+        <% if params[:controller] == 'pages' && params[:action] == 'players' %>
+          <%= image_tag 'players-black.png', class: 'pwa-navbar-icon' %>
+        <% else %>
+          <%= image_tag 'players.png', class: 'pwa-navbar-icon' %>
+        <% end %>
+        <p class="pwa-navbar-text <%= (params[:controller] == 'pages' && params[:action] == 'players') ? 'pwa-active' : '' %>">PLAYERS</p>
+      </div>
+    <% end %>
+    <%= link_to opta_poplar_path, class: 'pwa-navbar-section no-decoration' do %>
+      <div class="pwa-navbar-section">
+        <% if params[:controller] == 'pages' && params[:action] == 'stats' %>
+          <%= image_tag 'stats-black.png', class: 'pwa-navbar-icon' %>
+        <% else %>
+          <%= image_tag 'stats.png', class: 'pwa-navbar-icon' %>
+        <% end %>
+        <p class="pwa-navbar-text <%= (params[:controller] == 'pages' && params[:action] == 'stats') ? 'pwa-active' : '' %>">OPTA POPLAR</p>
+      </div>
+    <% end %>
+  </div>
+</div>
