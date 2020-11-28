@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="border rounded shadow mt-3 p-3">
+  <div class="rounded shadow mt-3 p-3" style="border: 5px solid #000;">
     <h3 class="text-center font-weight-bold"><%= @match.title %></h3>
     <p class="text-center mb-0" style="font-size: 14px;"><%= @match.date.strftime('%A %e %B %Y') %></p>
   </div>
@@ -19,9 +19,9 @@
       <div class="col-12 p-0">
         <% @match.match_goals.each do |match_goal| %>
           <div class="d-flex align-items-center score-text <%= match_goal.team.home == true ? 'justify-content-start' : 'justify-content-end' %>">
-            <i class="fas fa-futbol mr-2"></i>
-            <span class="mr-2"><%= match_goal.goal.user.name %></span>
-            (<i class="fas fa-hands-helping mr-2"></i> <%= match_goal.assist.user.name %>)
+            <%= image_tag 'ball.png', width: 14, class: 'mr-2' %>
+            <span class="mr-2 font-weight-bold"><%= match_goal.goal.user.name %></span>
+            (<%= image_tag 'boot.png', width: 14, class: 'assist-boot mr-2' %> <%= match_goal.assist.user.name %>)
           </div>
         <% end %>
       </div>
