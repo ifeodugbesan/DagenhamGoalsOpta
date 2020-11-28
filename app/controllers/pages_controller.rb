@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   # skip_before_action :authenticate_user!, only: [ :home ]
 
   def home
+    @mvp = User.all.sort_by { |player| player.goals.size + player.assists.size }.reverse.first
   end
 
   def players
