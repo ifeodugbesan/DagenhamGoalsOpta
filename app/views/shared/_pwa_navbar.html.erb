@@ -8,7 +8,7 @@
         <% else %>
           <%= image_tag 'home.png', class: 'pwa-navbar-icon' %>
         <% end %>
-        <p class="pwa-navbar-text <%= (params[:controller] == 'pages' && params[:action] == 'home') ? 'pwa-active' : '' %>">HOME</p>
+        <!-- <p class="pwa-navbar-text <%#= (params[:controller] == 'pages' && params[:action] == 'home') ? 'pwa-active' : '' %>">HOME</p> -->
       </div>
     <% end %>
     <%= link_to matches_path, class: "pwa-navbar-section no-decoration" do %>
@@ -18,7 +18,7 @@
         <% else %>
           <%= image_tag 'matches.png', class: 'pwa-navbar-icon' %>
         <% end %>
-        <p class="pwa-navbar-text <%= params[:controller] == 'matches' ? 'pwa-active' : '' %>">MATCHES</p>
+        <!-- <p class="pwa-navbar-text <%#= params[:controller] == 'matches' ? 'pwa-active' : '' %>">MATCHES</p> -->
       </div>
     <% end %>
     <%= link_to players_path, class: 'pwa-navbar-section no-decoration' do %>
@@ -28,7 +28,7 @@
         <% else %>
           <%= image_tag 'players.png', class: 'pwa-navbar-icon' %>
         <% end %>
-        <p class="pwa-navbar-text <%= (params[:controller] == 'pages' && params[:action] == 'players') ? 'pwa-active' : '' %>">PLAYERS</p>
+        <!-- <p class="pwa-navbar-text <%#= (params[:controller] == 'pages' && params[:action] == 'players') ? 'pwa-active' : '' %>">PLAYERS</p> -->
       </div>
     <% end %>
     <%= link_to opta_poplar_path, class: 'pwa-navbar-section no-decoration' do %>
@@ -38,7 +38,7 @@
         <% else %>
           <%= image_tag 'stats.png', class: 'pwa-navbar-icon' %>
         <% end %>
-        <p class="pwa-navbar-text <%= (params[:controller] == 'pages' && params[:action] == 'stats') ? 'pwa-active' : '' %>">OPTA POPLAR</p>
+        <!-- <p class="pwa-navbar-text <%#= (params[:controller] == 'pages' && params[:action] == 'stats') ? 'pwa-active' : '' %>">OPTA POPLAR</p> -->
       </div>
     <% end %>
   </div>
