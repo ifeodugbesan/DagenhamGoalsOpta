@@ -82,3 +82,14 @@ body {
 .font-14 {
   font-size: 14px;
 }
+
+#pills-tab {
+  .nav-link {
+    color: #000000;
+    border-radius: 0;
+  }
+  .nav-link.active {
+    color: #FFFFFF;
+    background-color: #000000;
+  }
+}

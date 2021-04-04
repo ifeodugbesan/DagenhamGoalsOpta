@@ -1,9 +1,9 @@
 <div class="container" data-target="common.container">
-  <h3 class="font-weight-bold text-center mt-3">Match Preview</h3>
+  <!-- <h3 class="font-weight-bold text-center mt-3">Match Preview</h3>
   <div class="row justify-content-center">
     <div class="col-12 col-md-6 col-lg-4">
       <div class="card rounded shadow my-3">
-        <%= image_tag "https://m.media-amazon.com/images/I/81ydpaxHn0L._SS500_.jpg", style: 'width: 100%' %>
+        <%#= image_tag "https://m.media-amazon.com/images/I/81ydpaxHn0L._SS500_.jpg", style: 'width: 100%' %>
         <div class="p-2 d-flex flex-column justify-content-center align-items-center">
           <h5 class="font-weight-bold">Pastor Vs Pimp</h5>
           <p class="mb-0" style="font-size: 14px;">This Sunday we are going to church as Pastor Bambo is aiming to anoint the Resident Pimp EB7. Bambo rejuvenated after his Pfizer Covid Vaccine has brought scrutiny on EB7’s winning record is he the best of a bad bunch? Or a true star player? EB7 states he respects a man 10 years his senior and refuses to insult the vulnerable.
@@ -28,7 +28,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <h3 class="font-weight-bold text-center mt-3">Latest News</h3>
   <div class="row justify-content-center">
     <div class="col-12 col-md-6 col-lg-4">
@@ -36,22 +36,22 @@
         <%= image_tag "cover.jpg", style: 'width: 100%' %>
         <div class="p-2 d-flex flex-column justify-content-center align-items-center">
           <h5 class="font-weight-bold">Poplar returns!</h5>
-          <p class="mb-0" style="font-size: 14px;">Due to London's post lockdown placement in Tier 2 we can now welcome back our beloved Poplar FC Sundays!</p>
+          <p class="mb-0" style="font-size: 14px;">Due to London's post latest statement on coronavirus, from 29th March we can now welcome back our beloved Poplar FC Sundays!</p>
         </div>
       </div>
     </div>
   </div>
-  <h3 class="font-weight-bold text-center mt-3">MVP</h3>
+  <!-- <h3 class="font-weight-bold text-center mt-3">MVP</h3>
   <div class="row justify-content-center">
     <div class="col-12 col-md-6 col-lg-4">
       <div class="card rounded shadow my-3">
-        <%= image_tag @mvp.photo, style: 'width: 100%' %>
+        <%#= image_tag @mvp.photo, style: 'width: 100%' %>
         <div class="p-2 d-flex flex-column justify-content-center align-items-center">
-          <h5 class="font-weight-bold"><%= @mvp.name %></h5>
-          <p class="mb-0" style="font-size: 14px;">Goal contributions: <%= @mvp.goals.size + @mvp.assists.size %></p>
+          <h5 class="font-weight-bold"><%#= @mvp.name %></h5>
+          <p class="mb-0" style="font-size: 14px;">Goal contributions: <%#= @mvp.goals.where(season: 2).size + @mvp.assists.where(season: 2).size %></p>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 </div>

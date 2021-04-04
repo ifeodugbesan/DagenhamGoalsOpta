@@ -15,6 +15,7 @@ class TeamsController < ApplicationController
     @team = Team.new(match: @match)
     @team.captain = params[:team][:captain]
     params[:team][:home] == "true" ? @team.home = true : @team.home = false
+    @team.season = 2
     @team.save
     @players = params[:team][:players].reject(&:blank?).map { |player| Player.create(team: @team, user: User.find(player.to_i)) }
     @players << Player.create(team: @team, user: User.find_by(name: params[:team][:captain]))
