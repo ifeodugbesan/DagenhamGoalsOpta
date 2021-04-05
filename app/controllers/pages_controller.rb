@@ -10,8 +10,11 @@ class PagesController < ApplicationController
   end
 
   def stats
-    matches = User.where.not(name: 'OG Home').where.not(name: 'OG Away').where.not(name: 'No Assist').sort_by {|user| user.matches.size }.reverse
-    goals = matches.sort_by {|user| user.goals.size }.reverse
-    @players = goals.sort_by {|user| user.goals.size + user.assists.size }.reverse
+    season_one_matches = User.where.not(name: 'OG Home').where.not(name: 'OG Away').where.not(name: 'No Assist').sort_by { |user| user.matches.where(season: 1).size }.reverse
+    season_two_matches = User.where.not(name: 'OG Home').where.not(name: 'OG Away').where.not(name: 'No Assist').sort_by { |user| user.matches.where(season: 2).size }.reverse
+    season_one_goals = season_one_matches.sort_by { |user| user.goals.where(season: 1).size }.reverse
+    season_two_goals = season_two_matches.sort_by { |user| user.goals.where(season: 2).size }.reverse
+    @season_one_players = season_one_goals.sort_by { |user| user.goals.where(season: 1).size + user.assists.where(season: 1).size }.reverse
+    @season_two_players = season_two_goals.sort_by { |user| user.goals.where(season: 2).size + user.assists.where(season: 2).size }.reverse
   end
 end
