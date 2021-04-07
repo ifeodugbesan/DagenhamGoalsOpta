@@ -13,7 +13,7 @@
     <div class="mb-3 d-flex justify-content-center align-items-center">
       <table class="rounded border shadow">
         <thead>
-          <tr class="border-bottom">
+          <tr class="border-bottom table-headers">
             <td class="p-2 border-right text-center">
               <%= image_tag 'players-black.png', width: 25 %>
             </td>
@@ -41,8 +41,8 @@
           </tr>
         </thead>
         <tbody>
-          <% @season_one_players.each do |player| %>
-            <tr class="border-bottom">
+          <% @season_one_players.each_with_index do |player, index| %>
+            <tr class="border-bottom <%= 'bg-light' if index.even? %>">
               <td class="d-flex justify-content-start align-items-center border-right pl-0 py-0 pr-2"><%= image_tag "#{player.photo}", height: 50, class: 'mr-1' %><span class="font-14 text-truncate"><%= player.name %></span></td>
               <td class="p-2 border-right text-center"><%= player.matches.where(season: 1, result_confirmed: true).size %></td>
               <td class="p-2 border-right text-center"><%= player.goals.where(season: 1).size %></td>
@@ -50,7 +50,7 @@
               <td class="p-2 border-right text-center"><%= player.goals.where(season: 1).size + player.assists.where(season: 1).size %></td>
               <td class="p-2 border-right text-center"><%= player.teams.where(season: 1, winners: true).size %></td>
               <td class="p-2 border-right text-center"><%= player.teams.where(season: 1, losers: true).size %></td>
-              <td class="p-2 border-right text-center"><%= player.matches.where(season: 1).any? ? "#{(player.teams.where(season: 1, winners: true).size.to_f / player.matches.where(season: 1, result_confirmed: true).size * 100).round(2)}%" : 'N/A' %></td>
+              <td class="p-2 border-right text-center"><%= player.matches.where(season: 1).any? ? "#{(player.teams.where(season: 1, winners: true).size / player.matches.where(season: 1, result_confirmed: true).size.to_f * 100).round(2)}%" : 'N/A' %></td>
             </tr>
           <% end %>
         </tbody>
@@ -62,7 +62,7 @@
     <div class="mb-3 d-flex justify-content-center align-items-center">
       <table class="rounded border shadow">
         <thead>
-          <tr class="border-bottom">
+          <tr class="border-bottom table-headers">
             <td class="p-2 border-right text-center">
               <%= image_tag 'players-black.png', width: 25 %>
             </td>
@@ -90,8 +90,8 @@
           </tr>
         </thead>
         <tbody>
-          <% @season_two_players.each do |player| %>
-            <tr class="border-bottom">
+          <% @season_two_players.each_with_index do |player, index| %>
+            <tr class="border-bottom <%= 'bg-light' if index.even? %>">
               <td class="d-flex justify-content-start align-items-center border-right pl-0 py-0 pr-2"><%= image_tag "#{player.photo}", height: 50, class: 'mr-1' %><span class="font-14 text-truncate"><%= player.name %></span></td>
               <td class="p-2 border-right text-center"><%= player.matches.where(season: 2, result_confirmed: true).size %></td>
               <td class="p-2 border-right text-center"><%= player.goals.where(season: 2).size %></td>
@@ -99,7 +99,7 @@
               <td class="p-2 border-right text-center"><%= player.goals.where(season: 2).size + player.assists.where(season: 2).size %></td>
               <td class="p-2 border-right text-center"><%= player.teams.where(season: 2, winners: true).size %></td>
               <td class="p-2 border-right text-center"><%= player.teams.where(season: 2, losers: true).size %></td>
-              <td class="p-2 border-right text-center"><%= player.matches.where(season: 2).any? ? "#{(player.teams.where(season: 2, winners: true).size.to_f / player.matches.where(season: 2, result_confirmed: true).size * 100).round(2)}%" : 'N/A' %></td>
+              <td class="p-2 border-right text-center"><%= player.matches.where(season: 2).any? ? "#{(player.teams.where(season: 2, winners: true).size / player.matches.where(season: 2, result_confirmed: true).size.to_f * 100).round(2)}%" : 'N/A' %></td>
             </tr>
           <% end %>
         </tbody>
