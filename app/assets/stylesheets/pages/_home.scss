@@ -21,6 +21,11 @@ body {
   margin-bottom: 16px;
 }
 
+.homepage {
+  background-size: cover;
+  background-position: center;
+}
+
 ///////////// MATCH INDEX ///////////////
 
 .no-decoration {
@@ -95,7 +100,10 @@ body {
 }
 
 .table-headers {
-  background: #8E96B5;
+  background: #DC9A51;
+  td {
+    border-color: #DC9A51 !important;
+  }
 }
 
 .tab-content {
