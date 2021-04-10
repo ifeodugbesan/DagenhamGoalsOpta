@@ -24,6 +24,9 @@ body {
 .homepage {
   background-size: cover;
   background-position: center;
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
 }
 
 ///////////// MATCH INDEX ///////////////
