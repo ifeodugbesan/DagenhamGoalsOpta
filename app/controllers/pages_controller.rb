@@ -1,6 +1,9 @@
 class PagesController < ApplicationController
   # skip_before_action :authenticate_user!, only: [ :home ]
 
+  def temp
+  end
+
   def home
     @mvp = User.where.not(name: 'OG Home').where.not(name: 'OG Away').where.not(name: 'No Assist').sort_by { |player| player.goals.where(season: 2).size + player.assists.where(season: 2).size }.reverse.first
   end

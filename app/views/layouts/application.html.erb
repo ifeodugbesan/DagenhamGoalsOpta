@@ -29,11 +29,15 @@
   </head>
 
   <body data-controller="common">
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
+    <% unless params[:action] == 'temp' %>
+      <%= render 'shared/navbar' %>
+      <%= render 'shared/flashes' %>
+    <% end %>
     <div data-target="common.container", style="overflow-x: scroll;">
       <%= yield %>
     </div>
-    <%= render 'shared/pwa_navbar' %>
+    <% unless params[:action] == 'temp' %>
+      <%= render 'shared/pwa_navbar' %>
+    <% end %>
   </body>
 </html>
