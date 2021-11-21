@@ -4,7 +4,10 @@
     <a class="nav-link text-center" id="pills-season-one-tab" data-toggle="pill" href="#pills-season-one" role="tab" aria-controls="pills-season-one" aria-selected="true">Season One</a>
   </li>
   <li class="nav-item flex-grow-1">
-    <a class="nav-link text-center active" id="pills-season-two-tab" data-toggle="pill" href="#pills-season-two" role="tab" aria-controls="pills-season-two" aria-selected="false">Season Two</a>
+    <a class="nav-link text-center" id="pills-season-two-tab" data-toggle="pill" href="#pills-season-two" role="tab" aria-controls="pills-season-two" aria-selected="false">Season Two</a>
+  </li>
+  <li class="nav-item flex-grow-1">
+    <a class="nav-link text-center active" id="pills-season-three-tab" data-toggle="pill" href="#pills-season-three" role="tab" aria-controls="pills-season-three" aria-selected="false">Season Three</a>
   </li>
 </ul>
 <!-- SEASON ONE -->
@@ -57,8 +60,9 @@
       </table>
     </div>
   </div>
+
   <!-- SEASON TWO -->
-  <div class="tab-pane fade show active" id="pills-season-two" role="tabpanel" aria-labelledby="pills-season-two-tab">
+  <div class="tab-pane fade show" id="pills-season-two" role="tabpanel" aria-labelledby="pills-season-two-tab">
     <div class="d-flex justify-content-center align-items-center">
       <table class="rounded shadow w-100">
         <thead>
@@ -100,6 +104,56 @@
               <td class="p-2 border-right text-center"><%= player.teams.where(season: 2, winners: true).size %></td>
               <td class="p-2 border-right text-center"><%= player.teams.where(season: 2, losers: true).size %></td>
               <td class="p-2 border-right text-center"><%= player.matches.where(season: 2).any? ? "#{(player.teams.where(season: 2, winners: true).size / player.matches.where(season: 2, result_confirmed: true).size.to_f * 100).round(2)}%" : 'N/A' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SEASON THREE -->
+  <div class="tab-pane fade show active" id="pills-season-three" role="tabpanel" aria-labelledby="pills-season-three-tab">
+    <div class="d-flex justify-content-center align-items-center">
+      <table class="rounded shadow w-100">
+        <thead>
+          <tr class="border-bottom table-headers">
+            <td class="p-2 border-right text-center">
+              <%= image_tag 'players-black.png', width: 25 %>
+            </td>
+            <td class="p-2 border-right text-center">
+              <%= image_tag 'matches-black.png', width: 25 %>
+            </td>
+            <td class="p-2 border-right text-center">
+              <%= image_tag 'ball.png', width: 25 %>
+            </td>
+            <td class="p-2 border-right text-center">
+              <%= image_tag 'boot.png', width: 25 %>
+            </td>
+            <td class="p-2 border-right text-center text-center">
+              <%= image_tag 'ball.png', width: 20 %> + <%= image_tag 'boot.png', width: 20 %>
+            </td>
+             <td class="p-2 border-right text-center">
+              <strong>W</strong>
+            </td>
+            <td class="p-2 border-right text-center">
+              <STRONG>L</STRONG>
+            </td>
+            <td class="p-2 border-right text-center">
+              <STRONG>W %</STRONG>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @season_three_players.each_with_index do |player, index| %>
+            <tr class="border-bottom <%= 'bg-light' if index.even? %>">
+              <td class="d-flex justify-content-start align-items-center border-right pl-0 py-0 pr-2"><%= image_tag "#{player.photo}", height: 50, class: 'mr-1' %><span class="font-14 text-truncate"><%= player.name %></span></td>
+              <td class="p-2 border-right text-center"><%= player.matches.where(season: 3, result_confirmed: true).size %></td>
+              <td class="p-2 border-right text-center"><%= player.goals.where(season: 3).size %></td>
+              <td class="p-2 border-right text-center"><%= player.assists.where(season: 3).size %></td>
+              <td class="p-2 border-right text-center"><%= player.goals.where(season: 3).size + player.assists.where(season: 3).size %></td>
+              <td class="p-2 border-right text-center"><%= player.teams.where(season: 3, winners: true).size %></td>
+              <td class="p-2 border-right text-center"><%= player.teams.where(season: 3, losers: true).size %></td>
+              <td class="p-2 border-right text-center"><%= player.matches.where(season: 3).any? ? "#{(player.teams.where(season: 3, winners: true).size / player.matches.where(season: 3, result_confirmed: true).size.to_f * 100).round(2)}%" : 'N/A' %></td>
             </tr>
           <% end %>
         </tbody>
