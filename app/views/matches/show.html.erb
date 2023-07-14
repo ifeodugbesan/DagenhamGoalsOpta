@@ -20,8 +20,8 @@
         <% @match.match_goals.each do |match_goal| %>
           <div class="d-flex align-items-center score-text <%= match_goal.team.home == true ? 'justify-content-start' : 'justify-content-end' %>">
             <%= image_tag 'ball.png', width: 14, class: 'mr-2' %>
-            <span class="mr-2 font-weight-bold"><%= match_goal.goal.user.name %></span>
-            (<%= image_tag 'boot.png', width: 14, class: 'assist-boot mr-2' %> <%= match_goal.assist.user.name %>)
+            <span class="mr-2 font-weight-bold"><%= match_goal.goal.player.name %></span>
+            (<%= image_tag 'boot.png', width: 14, class: 'assist-boot mr-2' %> <%= match_goal.assist.player.name %>)
           </div>
         <% end %>
       </div>
@@ -37,29 +37,38 @@
   </div>
   <div class="row pb-3 justify-content-around">
     <div class="col-12 col-md-6 pr-3 pr-md-2">
-      <div class="rounded shadow mb-3 p-3 home-team" style="border: 5px solid #D68D38; background: #FFF;">
+      <div class="rounded shadow mb-3 p-3 home-team" style="border: 5px solid #EE251B; background: #FF7979;">
         <% if @match.teams.empty? %>
           <%= link_to "ADD HOME TEAM", new_match_team_path(@match, home: true), class: 'btn btn-primary' %>
         <% end %>
         <% if @match.teams.where(home: true).any? %>
-          <h5 class="text-center font-weight-bold mb-3">TEAM <%= @match.teams.where(home: true).first.captain.upcase %></h5>
+          <h5 class="text-center font-weight-bold mb-3">HOME TEAM <%#= @match.teams.where(home: true).first.captain.upcase %></h5>
           <div class="row m-0 justify-content-center">
             <div class="col-4 mb-2 d-flex justify-content-center align-items-center p-3">
-              <%= image_tag 'nike-black.png', class: 'w-75' %>
+
             </div>
             <div class="col-4 mb-2">
-              <%= image_tag "#{User.find_by(name: @match.teams.where(home: true).first.captain).photo}", style: 'width: 100%' %>
-              <p class="m-0 text-center player-name"><%= @match.teams.where(home: true).first.captain %><i class="fab fa-contao ml-2"></i></p>
+              <% pl = Player.find_by(name: @match.teams.where(home: true).first.captain) %>
+              <% if pl.photo.attached? %>
+                <%= cl_image_tag pl.photo.key, style: 'width: 100%' %>
+              <% else %>
+                <%= image_tag "default.png", style: 'width: 100%' %>
+              <% end %>
+              <p class="m-0 text-center player-name"><%= @match.teams.where(home: true).first.captain %><i class="fa fa-contao ml-2"></i></p>
             </div>
             <div class="col-4 mb-2 d-flex justify-content-center align-items-center p-3">
-              <%= image_tag 'poplarfc.png', class: 'w-75' %>
+
             </div>
           </div>
           <div class="row m-0">
           <% @match.teams.where(home: true).first.players.first(6).each do |player| %>
               <div class="col-4 mb-2">
-                <%= image_tag "#{player.user.photo}", style: 'width: 100%' %>
-                <p class="m-0 text-center player-name"><%= player.user.name %> </p>
+                <% if player.photo.attached? %>
+                  <%= cl_image_tag player.photo.key, style: 'width: 100%' %>
+                <% else %>
+                  <%= image_tag 'default.png', style: 'width: 100%' %>
+                <% end %>
+                <p class="m-0 text-center player-name"><%= player.name %> </p>
               </div>
             <% end %>
           </div>
@@ -67,29 +76,37 @@
       </div>
     </div>
     <div class="col-12 col-md-6 pl-3 pl-md-2">
-      <div class="rounded shadow mb-3 p-3" style="border: 5px solid #FBCF2E; background: #333D7A;">
+      <div class="rounded shadow mb-3 p-3" style="border: 5px solid #111D6F; background: #333D7A;">
         <% if @match.teams.size == 1 %>
           <%= link_to "ADD AWAY TEAM", new_match_team_path(@match, home: false), class: 'btn btn-primary' %>
         <% end %>
         <% if @match.teams.where(home: false).any? %>
-          <h5 class="text-center font-weight-bold mb-3 text-light">TEAM <%= @match.teams.where(home: false).first.captain.upcase %></h5>
+          <h5 class="text-center font-weight-bold mb-3 text-light">AWAY TEAM <%#= @match.teams.where(home: false).first.captain.upcase %></h5>
           <div class="row m-0 justify-content-center">
             <div class="col-4 mb-2 d-flex justify-content-center align-items-center p-3">
-              <%= image_tag 'nike-white.png', class: 'w-75' %>
+
             </div>
             <div class="col-4 mb-2">
-              <%= image_tag "#{User.find_by(name: @match.teams.where(home: false).first.captain).photo}", style: 'width: 100%' %>
-              <p class="m-0 text-center text-light player-name"><%= @match.teams.where(home: false).first.captain %><i class="fab fa-contao ml-2"></i></p>
+              <% pl = Player.find_by(name: @match.teams.where(home: false).first.captain) %>
+              <% if pl.photo.attached? %>
+                <%= cl_image_tag pl.photo.key, style: 'width: 100%' %>
+              <% else %>
+                <%= image_tag "default.png", style: 'width: 100%' %>
+              <% end %>
+              <p class="m-0 text-center text-light player-name"><%= @match.teams.where(home: false).first.captain %><i class="fa fa-contao ml-2"></i></p>
             </div>
             <div class="col-4 mb-2 d-flex justify-content-center align-items-center p-3">
-              <%= image_tag 'poplarfc-white.png', class: 'w-75' %>
             </div>
           </div>
           <div class="row m-0">
           <% @match.teams.where(home: false).first.players.first(6).each do |player| %>
               <div class="col-4 mb-2">
-                <%= image_tag "#{player.user.photo}", style: 'width: 100%' %>
-                <p class="m-0 text-center text-light player-name"><%= player.user.name %> </p>
+                <% if player.photo.attached? %>
+                  <%= cl_image_tag player.photo.key, style: 'width: 100%' %>
+                <% else %>
+                  <%= image_tag 'default.png', style: 'width: 100%' %>
+                <% end %>
+                <p class="m-0 text-center text-light player-name"><%= player.name %> </p>
               </div>
             <% end %>
           </div>

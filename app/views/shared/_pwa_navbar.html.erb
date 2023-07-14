@@ -31,14 +31,14 @@
         <!-- <p class="pwa-navbar-text <%#= (params[:controller] == 'pages' && params[:action] == 'players') ? 'pwa-active' : '' %>">PLAYERS</p> -->
       </div>
     <% end %>
-    <%= link_to opta_poplar_path, class: 'pwa-navbar-section no-decoration' do %>
+    <%= link_to opta_path, class: 'pwa-navbar-section no-decoration' do %>
       <div class="pwa-navbar-section">
         <% if params[:controller] == 'pages' && params[:action] == 'stats' %>
           <%= image_tag 'stats-black.png', class: 'pwa-navbar-icon' %>
         <% else %>
           <%= image_tag 'stats.png', class: 'pwa-navbar-icon' %>
         <% end %>
-        <!-- <p class="pwa-navbar-text <%#= (params[:controller] == 'pages' && params[:action] == 'stats') ? 'pwa-active' : '' %>">OPTA POPLAR</p> -->
+        <!-- <p class="pwa-navbar-text <%#= (params[:controller] == 'pages' && params[:action] == 'stats') ? 'pwa-active' : '' %>">OPTA</p> -->
       </div>
     <% end %>
   </div>

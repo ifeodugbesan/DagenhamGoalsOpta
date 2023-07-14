@@ -1,6 +1,6 @@
 <div class="container py-3" data-controller="team">
   <%= simple_form_for [@match, @team] do |f| %>
-    <%= f.input :captain, required: true, collection: User.all.order(name: :asc), group_method: :name, value_method: :name, input_html: { data: { target: 'team.captain'} } %>
+    <%= f.input :captain, required: true, collection: Player.all.order(name: :asc), group_method: :name, value_method: :name, input_html: { data: { target: 'team.captain'} } %>
     <fieldset class="form-group check_boxes optional team_players">
       <legend class="col-form-label pt-0">Remaining players</legend>
       <input type="hidden" name="team[players][]" value="">
@@ -10,7 +10,11 @@
             <div class="col-3 px-1 my-1">
               <input class="form-check-input check_boxes optional d-none" type="checkbox" value="<%= user.id %>" name="team[players][]" id="team_players_<%= user.id %>" data-target="team.player">
               <label class="form-check-label collection_check_boxes border rounded shadow text-truncate" for="team_players_<%= user.id %>" data-action="click->team#toggleActive">
-                  <%= image_tag "#{user.photo}", style: 'width: 100%' %>
+                  <% if user.photo.attached? %>
+                    <%= cl_image_tag user.photo.key, style: 'width: 100%' %>
+                  <% else %>
+                    <%= image_tag 'default.png', style: 'width: 100%' %>
+                  <% end %>
                   <div class="py-1 d-flex justify-content-center bg-white">
                     <p class="text-center m-0" style="font-size: 10px;"><%= user.name %></p>
                   </div>

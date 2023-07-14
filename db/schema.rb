@@ -10,25 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_04_064444) do
+ActiveRecord::Schema.define(version: 2023_07_14_203828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
   create_table "assists", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "player_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "season"
-    t.index ["user_id"], name: "index_assists_on_user_id"
+    t.index ["player_id"], name: "index_assists_on_player_id"
   end
 
   create_table "goals", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "player_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "season"
-    t.index ["user_id"], name: "index_goals_on_user_id"
+    t.index ["player_id"], name: "index_goals_on_player_id"
   end
 
   create_table "match_goals", force: :cascade do |t|
@@ -56,12 +77,19 @@ ActiveRecord::Schema.define(version: 2021_04_04_064444) do
   end
 
   create_table "players", force: :cascade do |t|
+    t.string "name"
+    t.string "photo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", null: false
+  end
+
+  create_table "team_players", force: :cascade do |t|
+    t.bigint "player_id", null: false
     t.bigint "team_id", null: false
-    t.index ["team_id"], name: "index_players_on_team_id"
-    t.index ["user_id"], name: "index_players_on_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["player_id"], name: "index_team_players_on_player_id"
+    t.index ["team_id"], name: "index_team_players_on_team_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -84,19 +112,18 @@ ActiveRecord::Schema.define(version: 2021_04_04_064444) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "name"
-    t.string "photo"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "assists", "users"
-  add_foreign_key "goals", "users"
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "assists", "players"
+  add_foreign_key "goals", "players"
   add_foreign_key "match_goals", "assists"
   add_foreign_key "match_goals", "goals"
   add_foreign_key "match_goals", "matches"
   add_foreign_key "match_goals", "teams"
-  add_foreign_key "players", "teams"
-  add_foreign_key "players", "users"
+  add_foreign_key "team_players", "players"
+  add_foreign_key "team_players", "teams"
   add_foreign_key "teams", "matches"
 end

@@ -14,7 +14,7 @@ class MatchesController < ApplicationController
 
   def create
     @match = Match.new(match_params)
-    @match.season = 3
+    @match.season = 1
     if @match.save
       redirect_to match_path(@match)
     else

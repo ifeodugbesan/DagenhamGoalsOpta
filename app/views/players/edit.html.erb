@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>Edit Player</h1>
+  <%= simple_form_for @player do |f| %>
+    <%= f.input :name %>
+    <%= f.input :photo, as: :file %>
+    <%= f.submit "EDIT PLAYER", class: "btn btn-primary" %>
+  <% end %>
+</div>

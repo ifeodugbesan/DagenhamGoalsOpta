@@ -25,6 +25,8 @@ gem 'redis', '~> 4.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+gem "cloudinary"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
@@ -32,7 +34,7 @@ gem 'devise'
 
 gem 'autoprefixer-rails'
 gem 'mini_racer'
-gem 'font-awesome-sass'
+gem 'font-awesome-sass', '~> 4.6.1'
 gem 'simple_form'
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'

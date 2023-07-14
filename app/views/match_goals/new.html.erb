@@ -9,7 +9,11 @@
             <div class="col-3 px-1 my-1">
               <input class="form-check-input radio_buttons required d-none" type="radio" value="<%= user.id %>" name="match_goal[goal]" id="match_goal_goal_<%= user.id %>" data-target="match-goal.goal">
               <label class="h-100 form-check-label collection_radio_buttons match-goal-player border rounded shadow" for="match_goal_goal_<%= user.id %>" data-action="click->match-goal#toggleGoalActive">
-                <%= image_tag "#{user.photo}", style: 'width: 100%' %>
+                <% if user.photo.attached? %>
+                  <%= cl_image_tag user.photo.key, style: 'width: 100%' %>
+                <% else %>
+                  <%= image_tag 'default.png', style: 'width: 100%' %>
+                <% end %>
                 <div class="py-1 d-flex justify-content-center bg-white">
                   <p class="text-center m-0" style="font-size: 10px;"><%= user.name %></p>
                 </div>
@@ -44,7 +48,11 @@
             <div class="col-3 px-1 my-1">
               <input class="form-check-input radio_buttons required d-none" type="radio" value="<%= user.id %>" name="match_goal[assist]" id="match_goal_assist_<%= user.id %>" data-target="match-goal.assist">
               <label class="form-check-label collection_radio_buttons match-goal-player border rounded shadow" for="match_goal_assist_<%= user.id %>" data-action="click->match-goal#toggleAssistActive">
-                <%= image_tag "#{user.photo}", style: 'width: 100%' %>
+                <% if user.photo.attached? %>
+                  <%= cl_image_tag user.photo.key, style: 'width: 100%' %>
+                <% else %>
+                  <%= image_tag 'default.png', style: 'width: 100%' %>
+                <% end %>
                 <div class="py-1 d-flex justify-content-center bg-white">
                   <p class="text-center m-0" style="font-size: 10px;"><%= user.name %></p>
                 </div>
@@ -54,7 +62,7 @@
           <div class="col-3 px-1 my-1">
             <input class="form-check-input radio_buttons required d-none" type="radio" value="<%= @no_assist.id %>" name="match_goal[assist]" id="match_goal_assist_<%= @no_assist.id %>" data-target="match-goal.assist">
             <label class="form-check-label collection_radio_buttons match-goal-player border rounded shadow" for="match_goal_assist_<%= @no_assist.id %>" data-action="click->match-goal#toggleAssistActive">
-              <%= image_tag "#{@no_assist.photo}", style: 'width: 100%' %>
+              <%= image_tag "noassist.png", style: 'width: 100%' %>
               <div class="py-1 d-flex justify-content-center bg-white">
                 <p class="text-center m-0" style="font-size: 10px;"><%= @no_assist.name %></p>
               </div>

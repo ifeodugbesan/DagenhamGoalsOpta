@@ -1,5 +1,22 @@
-<div class="homepage" data-target="common.homepage" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path "cover.jpg" %>);">
-  <h1 class="text-center pt-5" style="color: #DA9649; font-family: 'Bungee Inline'">Poplar FC</h1>
+<div class="homepage" data-target="common.homepage" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path 'cover.jpg' %>);">
+  <div class="d-flex justify-content-center align-items-center">
+    <%= link_to new_user_session_path, class: "text-decoration-none d-inline-flex" do %>
+      <h1 class="text-center pt-5 mt-2 mt-sm-5" style="color: #FFFFFF; font-family: 'Bungee Inline'">Dagenham Goals Opta</h1>
+    <% end %>
+  </div>
+  <div class="home-buttons mt-5 pt-5">
+    <div class="row m-0">
+      <div class="col-12 col-sm-6 mb-4">
+        <%= link_to "MATCHES", matches_path, class: "btn home-btn" %>
+      </div>
+      <div class="col-12 col-sm-6 mb-4">
+        <%= link_to "PLAYERS", players_path, class: "btn home-btn" %>
+      </div>
+      <div class="col-12">
+        <%= link_to "OPTA", opta_path, class: "btn home-btn" %>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- <div class="container" data-target="common.container">
