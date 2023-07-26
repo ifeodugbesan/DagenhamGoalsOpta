@@ -24,7 +24,7 @@ gem 'redis', '~> 4.0'
 
 gem 'psych', '< 4'
 
-# Use Active Storage variant
+# Use Active Storage variant§
 # gem 'image_processing', '~> 1.2'
 
 gem "cloudinary"
