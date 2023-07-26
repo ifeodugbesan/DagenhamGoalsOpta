@@ -135,6 +135,8 @@ GEM
       libv8-node (~> 16.19.0.0)
     minitest (5.18.1)
     msgpack (1.7.1)
+    net-http (0.3.2)
+      uri
     net-imap (0.3.6)
       date
       net-protocol
@@ -256,6 +258,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8.2)
+    uri (0.12.2)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -293,6 +296,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   listen (~> 3.2)
   mini_racer
+  net-http
   pg (>= 0.18, < 2.0)
   pry-byebug
   pry-rails

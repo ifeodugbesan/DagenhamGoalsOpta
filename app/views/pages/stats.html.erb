@@ -48,9 +48,9 @@
             <tr class="border-bottom <%= 'bg-light' if index.even? %>">
               <td class="d-flex justify-content-start align-items-center border-right pl-0 py-0 pr-2">
                 <% if player.photo.attached? %>
-                  <%= cl_image_tag player.photo.key, height: 50, class: 'mr-1' %>
+                  <%= cl_image_tag player.photo.key, height: 50, width: 33.33, class: 'mr-1', style: "object-fit: cover" %>
                 <% else %>
-                  <%= image_tag 'default.png', height: 50, class: 'mr-1' %>
+                  <%= image_tag 'default.png', height: 50, width: 33.33, class: 'mr-1', style: "object-fit: cover" %>
                 <% end %>
                 <span class="font-14 text-truncate"><%= player.name %></span>
               </td>

@@ -36,6 +36,7 @@ gem 'autoprefixer-rails'
 gem 'mini_racer'
 gem 'font-awesome-sass', '~> 4.6.1'
 gem 'simple_form'
+gem "net-http"
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'

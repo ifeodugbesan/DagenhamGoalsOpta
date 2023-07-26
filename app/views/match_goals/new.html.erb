@@ -24,7 +24,7 @@
             <input class="form-check-input radio_buttons required d-none" type="radio" value="<%= @oghome.id %>" name="match_goal[goal]" id="match_goal_goal_<%= @oghome.id %>" data-target="match-goal.goal">
             <label class="h-100 w-100 d-flex flex-column form-check-label collection_radio_buttons match-goal-player border rounded shadow" for="match_goal_goal_<%= @oghome.id %>" data-action="click->match-goal#toggleGoalActive">
               <div class="bg white w-100 flex-grow-1 d-flex justify-content-center align-items-center">
-                <h6 class="text-center">OG FOR TEAM <%= @match.teams.first.captain.upcase %></h6>
+                <h6 class="text-center" style="font-size: 22px;">OG FOR TEAM <%= @match.teams.first.captain.upcase %></h6>
               </div>
             </label>
           </div>
@@ -32,7 +32,7 @@
             <input class="form-check-input radio_buttons required d-none" type="radio" value="<%= @ogaway.id %>" name="match_goal[goal]" id="match_goal_goal_<%= @ogaway.id %>" data-target="match-goal.goal">
             <label class="h-100 w-100 d-flex flex-column form-check-label collection_radio_buttons match-goal-player border rounded shadow" for="match_goal_goal_<%= @ogaway.id %>" data-action="click->match-goal#toggleGoalActive">
               <div class="bg white w-100 flex-grow-1 d-flex justify-content-center align-items-center">
-                <h6 class="text-center">OG FOR TEAM <%= @match.teams.last.captain.upcase %></h6>
+                <h6 class="text-center" style="font-size: 22px;">OG FOR TEAM <%= @match.teams.last.captain.upcase %></h6>
               </div>
             </label>
           </div>
