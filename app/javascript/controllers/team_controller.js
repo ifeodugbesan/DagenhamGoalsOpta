@@ -20,13 +20,13 @@ export default class extends Controller {
       })
       myArray.push(this.captainTarget.value != "")
       this.playerTargets.forEach((input) => {
-        if (count == 6) {
+        if (count == 7) {
           input.checked ? input.nextElementSibling.classList.remove('disabled') : input.nextElementSibling.classList.add('disabled')
         } else {
           input.nextElementSibling.classList.remove('disabled');
         }
       });
-      if (myArray.every(isfilled) && count == 6) {
+      if (myArray.every(isfilled) && count == 7) {
         button.classList.remove('disabled')
       } else {
         button.classList.add('disabled')
