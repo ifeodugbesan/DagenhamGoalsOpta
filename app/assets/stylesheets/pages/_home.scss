@@ -120,6 +120,20 @@ body {
   opacity: 1 !important;
 }
 
+.match-goal-container img {
+  height: 390px;
+  object-fit: cover;
+  @include media-breakpoint-down(lg) {
+    height: 330px;
+  }
+  @include media-breakpoint-down(md) {
+    height: 270px;
+  }
+  @include media-breakpoint-down(sm) {
+    height: 150px;
+  }
+}
+
 ////////////// STATS //////////////////////
 
 .font-14 {
