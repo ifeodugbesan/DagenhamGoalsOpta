@@ -134,6 +134,21 @@ body {
   }
 }
 
+.og-card {
+  padding: 12px;
+  height: 415px;
+  object-fit: cover;
+  @include media-breakpoint-down(lg) {
+    height: 357px;
+  }
+  @include media-breakpoint-down(md) {
+    height: 297px;
+  }
+  @include media-breakpoint-down(sm) {
+    height: 175px;
+  }
+}
+
 ////////////// STATS //////////////////////
 
 .font-14 {
