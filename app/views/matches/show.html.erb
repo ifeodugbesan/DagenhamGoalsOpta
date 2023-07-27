@@ -47,18 +47,18 @@
             <div class="col-4 mb-2">
               <% pl = Player.find_by(name: @match.teams.where(home: true).first.captain) %>
               <% if pl.photo.attached? %>
-                <%= cl_image_tag pl.photo.key, style: 'width: 100%' %>
+                <%= cl_image_tag pl.photo.key, class: "w-100 ms-img" %>
               <% else %>
-                <%= image_tag "default.png", style: 'width: 100%' %>
+                <%= image_tag "default.png", class: "w-100 ms-img" %>
               <% end %>
               <p class="m-0 text-center player-name"><%= @match.teams.where(home: true).first.captain %><i class="fa fa-contao ml-2"></i></p>
             </div>
-            <% @match.teams.where(home: true).first.players.first(7).each do |player| %>
+            <% @match.teams.where(home: true).first.players.last(7).each do |player| %>
               <div class="col-4 mb-2">
                 <% if player.photo.attached? %>
-                  <%= cl_image_tag player.photo.key, style: 'width: 100%' %>
+                  <%= cl_image_tag player.photo.key, class: "w-100 ms-img" %>
                 <% else %>
-                  <%= image_tag 'default.png', style: 'width: 100%' %>
+                  <%= image_tag 'default.png', class: "w-100 ms-img" %>
                 <% end %>
                 <p class="m-0 text-center player-name"><%= player.name %> </p>
               </div>
@@ -78,18 +78,18 @@
             <div class="col-4 mb-2">
               <% pl = Player.find_by(name: @match.teams.where(home: false).first.captain) %>
               <% if pl.photo.attached? %>
-                <%= cl_image_tag pl.photo.key, style: 'width: 100%' %>
+                <%= cl_image_tag pl.photo.key, class: "w-100 ms-img" %>
               <% else %>
-                <%= image_tag "default.png", style: 'width: 100%' %>
+                <%= image_tag "default.png", class: "w-100 ms-img" %>
               <% end %>
               <p class="m-0 text-center text-light player-name"><%= @match.teams.where(home: false).first.captain %><i class="fa fa-contao ml-2"></i></p>
             </div>
-            <% @match.teams.where(home: false).first.players.first(7).each do |player| %>
+            <% @match.teams.where(home: false).first.players.last(7).each do |player| %>
               <div class="col-4 mb-2">
                 <% if player.photo.attached? %>
-                  <%= cl_image_tag player.photo.key, style: 'width: 100%' %>
+                  <%= cl_image_tag player.photo.key, class: "w-100 ms-img" %>
                 <% else %>
-                  <%= image_tag 'default.png', style: 'width: 100%' %>
+                  <%= image_tag 'default.png', class: "w-100 ms-img" %>
                 <% end %>
                 <p class="m-0 text-center text-light player-name"><%= player.name %> </p>
               </div>

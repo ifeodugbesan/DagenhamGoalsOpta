@@ -85,6 +85,19 @@ body {
   margin-top: 2px !important;
 }
 
+.ms-img {
+  object-fit: cover;
+  height: 220px;
+  @include media-breakpoint-down(lg) {
+    height: 160px;
+  }
+  @include media-breakpoint-down(md) {
+    height: 100px;
+  }
+  @include media-breakpoint-down(sm) {
+    height: 200px;
+  }
+}
 
 //////////// TEAM NEW /////////////////
 
