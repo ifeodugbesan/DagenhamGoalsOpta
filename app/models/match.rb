@@ -1,12 +1,12 @@
 class Match < ApplicationRecord
   has_many :match_goals, dependent: :destroy
-  has_many :goals, through: :match_goals, dependent: :destroy
-  has_many :assists, through: :match_goals, dependent: :destroy
+  has_many :goals, through: :match_goals
+  has_many :assists, through: :match_goals
   has_many :teams, dependent: :destroy
   has_many :players, through: :teams
 
   def score
-     "#{match_goals.select {|m| m.team.home == true }.size} - #{match_goals.select {|m| m.team.home == false }.size}"
+    "#{match_goals.select {|m| m.team.home == true }.size} - #{match_goals.select {|m| m.team.home == false }.size}"
   end
 
   def home_goals

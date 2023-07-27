@@ -13,7 +13,7 @@
               <% if match.teams.size == 2 %>
                 <div class="d-flex w-100">
                   <div class="w-50">
-                    <% hp = match.teams.first.players.last %>
+                    <% hp = Player.find_by(name: match.teams.first.captain) %>
                     <% if hp.photo.attached? %>
                       <%= cl_image_tag hp.photo.key, style: 'width: 100%; height: 260px; object-fit: cover;' %>
                     <% else %>
@@ -21,7 +21,7 @@
                     <% end %>
                   </div>
                   <div class="w-50">
-                    <% ap = match.teams.last.players.last %>
+                    <% ap = Player.find_by(name: match.teams.last.captain) %>
                     <% if ap.photo.attached? %>
                       <%= cl_image_tag ap.photo.key, style: 'width: 100%; height: 260px; object-fit: cover;' %>
                     <% else %>
