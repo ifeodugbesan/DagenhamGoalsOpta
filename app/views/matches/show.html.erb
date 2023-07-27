@@ -53,7 +53,8 @@
               <% end %>
               <p class="m-0 text-center player-name"><%= @match.teams.where(home: true).first.captain %><i class="fa fa-contao ml-2"></i></p>
             </div>
-            <% @match.teams.where(home: true).first.players.last(7).each do |player| %>
+            <% home_team = @match.teams.where(home: true).first.players.reject { |c| c == pl } %>
+            <% home_team.each do |player| %>
               <div class="col-4 mb-2">
                 <% if player.photo.attached? %>
                   <%= cl_image_tag player.photo.key, class: "w-100 ms-img" %>
@@ -84,7 +85,8 @@
               <% end %>
               <p class="m-0 text-center text-light player-name"><%= @match.teams.where(home: false).first.captain %><i class="fa fa-contao ml-2"></i></p>
             </div>
-            <% @match.teams.where(home: false).first.players.last(7).each do |player| %>
+            <% away_team = @match.teams.where(home: false).first.players.reject { |c| c == pl } %>
+            <% away_team.each do |player| %>
               <div class="col-4 mb-2">
                 <% if player.photo.attached? %>
                   <%= cl_image_tag player.photo.key, class: "w-100 ms-img" %>
