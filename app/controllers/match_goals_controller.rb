@@ -7,6 +7,11 @@ class MatchGoalsController < ApplicationController
     @oghome = Player.where(name: 'OG Home').first
     @ogaway = Player.where(name: 'OG Away').first
     @no_assist = Player.where(name: 'No Assist').first
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def create

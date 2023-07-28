@@ -3,6 +3,8 @@
   <%= simple_form_for @player do |f| %>
     <%= f.input :name %>
     <%= f.input :photo, as: :file %>
-    <%= f.submit "ADD PLAYER", class: "btn btn-primary" %>
+    <div class="d-flex justify-content-center align-items-center">
+      <%= f.submit "ADD PLAYER", class: "btn btn-primary primary-btn" %>
+    </div>
   <% end %>
 </div>

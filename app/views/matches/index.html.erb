@@ -1,8 +1,8 @@
 <div class="container pt-3">
-  <%#= link_to 'NEW MATCH', new_match_path, class: 'btn btn-block btn-primary my-3' %>
+  <%#= link_to 'NEW MATCH', new_match_path, class: 'btn btn-block btn-primary primary-btn my-3' %>
   <h3 class="font-weight-bold text-center">Matches</h3>
   <div class="d-flex justify-content-center align-items-center">
-    <%= link_to "NEW MATCH", new_match_path, class: "btn btn-primary mt-4" if user_signed_in? %>
+    <%= link_to "NEW MATCH", new_match_path, class: "btn btn-primary primary-btn mt-4" if user_signed_in? %>
   </div>
   <div class="row">
     <% @matches.each do |match| %>
@@ -49,6 +49,7 @@
     <% end %>
   </div>
 </div>
+
 
 
 

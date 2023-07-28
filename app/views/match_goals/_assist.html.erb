@@ -1,0 +1,36 @@
+<% player = params[:scorer] ? Player.find(params[:scorer]) : no_assist %>
+<% home = @match.teams.first.players.include?(player) || player.name == "OG Home" %>
+<% possible_assisters = home ? @match.teams.first.players.reject { |p| p == player } : @match.teams.last.players.reject { |p| p == player } %>
+
+<fieldset class="form-group radio_buttons required match_goal_assist">
+  <h3 class="text-center mb-3">Who assisted <%= player.name %>?</h3>
+  <input type="hidden" name="match_goal[assist]" value="">
+  <div class="form-check p-0">
+    <div class="row justify-content-center m-0">
+      <% possible_assisters.each do |user| %>
+        <div class="col-3 px-1 my-1">
+          <input class="form-check-input radio_buttons required d-none" type="radio" value="<%= user.id %>" name="match_goal[assist]" id="match_goal_assist_<%= user.id %>" data-target="match-goal.assist">
+          <label class="form-check-label collection_radio_buttons match-goal-player border rounded shadow" for="match_goal_assist_<%= user.id %>" data-action="click->match-goal#toggleAssistActive click->match-goal#enableButton">
+            <% if user.photo.attached? %>
+              <%= cl_image_tag user.photo.key, style: 'width: 100%' %>
+            <% else %>
+              <%= image_tag 'default.png', style: 'width: 100%' %>
+            <% end %>
+            <div class="py-1 d-flex justify-content-center bg-white">
+              <p class="text-center m-0" style="font-size: 10px;"><%= user.name %></p>
+            </div>
+          </label>
+        </div>
+      <% end %>
+      <div class="col-3 px-1 my-1">
+        <input class="form-check-input radio_buttons required d-none" type="radio" value="<%= no_assist.id %>" name="match_goal[assist]" id="match_goal_assist_<%= no_assist.id %>" data-target="match-goal.assist">
+        <label class="form-check-label collection_radio_buttons match-goal-player border rounded shadow" for="match_goal_assist_<%= no_assist.id %>" data-action="click->match-goal#toggleAssistActive click->match-goal#enableButton">
+          <%= image_tag "noassist.png", style: 'width: 100%' %>
+          <div class="py-1 d-flex justify-content-center bg-white">
+            <p class="text-center m-0" style="font-size: 10px;"><%= no_assist.name %></p>
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
+</fieldset>

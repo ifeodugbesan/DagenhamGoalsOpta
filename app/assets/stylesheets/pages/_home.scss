@@ -51,6 +51,14 @@ body {
   }
 }
 
+.primary-btn {
+  padding: 8px 32px;
+  font-size: 20px;
+  @include media-breakpoint-down(sm) {
+    width: 100%;
+  }
+}
+
 ///////////// MATCH INDEX ///////////////
 
 .no-decoration {

@@ -36,12 +36,12 @@
         <% end %>
       </div>
     </div>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center row m-0">
       <% unless Date.today > @match.date || @match.result_confirmed %>
-          <%= link_to 'ADD GOAL', new_match_match_goal_path(@match), class: 'btn btn-primary mt-3 mx-2' %>
+          <%= link_to 'ADD GOAL', new_match_match_goal_path(@match), class: 'btn btn-primary primary-btn mt-3 mx-2' %>
       <% end %>
       <% unless @match.result_confirmed %>
-        <%= link_to 'CONFIRM RESULT', result_confirmation_match_path(@match), class: 'btn btn-primary mt-3 mx-2', data: { confirm: "Are you sure you want to confirm this result?" } %>
+        <%= link_to 'CONFIRM RESULT', result_confirmation_match_path(@match), class: 'btn btn-primary primary-btn mt-3 mx-2', data: { confirm: "Are you sure you want to confirm this result?" } %>
       <% end %>
     </div>
   </div>
@@ -49,7 +49,7 @@
     <div class="col-12 col-md-6 pr-3 pr-md-2">
       <div class="rounded shadow mb-3 p-3 home-team" style="border: 5px solid #EE251B; background: #FF7979;">
         <% if @match.teams.empty? %>
-          <%= link_to "ADD HOME TEAM", new_match_team_path(@match, home: true), class: 'btn btn-primary' %>
+          <%= link_to "ADD HOME TEAM", new_match_team_path(@match, home: true), class: 'btn btn-primary primary-btn' %>
         <% end %>
         <% if @match.teams.where(home: true).any? %>
           <h5 class="text-center font-weight-bold mb-3">HOME TEAM <%#= @match.teams.where(home: true).first.captain.upcase %></h5>
@@ -81,7 +81,7 @@
     <div class="col-12 col-md-6 pl-3 pl-md-2">
       <div class="rounded shadow mb-3 p-3" style="border: 5px solid #111D6F; background: #333D7A;">
         <% if @match.teams.size == 1 %>
-          <%= link_to "ADD AWAY TEAM", new_match_team_path(@match, home: false), class: 'btn btn-primary' %>
+          <%= link_to "ADD AWAY TEAM", new_match_team_path(@match, home: false), class: 'btn btn-primary primary-btn' %>
         <% end %>
         <% if @match.teams.where(home: false).any? %>
           <h5 class="text-center font-weight-bold mb-3 text-light">AWAY TEAM <%#= @match.teams.where(home: false).first.captain.upcase %></h5>
