@@ -23,7 +23,7 @@
     <% end %>
     <%= link_to players_path, class: 'pwa-navbar-section no-decoration' do %>
       <div class="pwa-navbar-section">
-        <% if params[:controller] == 'pages' && params[:action] == 'players' %>
+        <% if params[:controller] == 'players' && params[:action] == 'index' %>
           <%= image_tag 'players-black.png', class: 'pwa-navbar-icon' %>
         <% else %>
           <%= image_tag 'players.png', class: 'pwa-navbar-icon' %>
