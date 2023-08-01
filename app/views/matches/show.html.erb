@@ -23,27 +23,33 @@
             <span class="mr-2 font-weight-bold"><%= match_goal.goal.player.name %></span>
             (<%= image_tag 'boot.png', width: 14, class: 'assist-boot mr-2' %> <%= match_goal.assist.player.name %>)
             <!-- ADMIN -->
-            <div class="px-2">
-              <%= link_to edit_match_match_goal_path(@match, match_goal), class: "mx-1 text-decoration-none" do %>
-                <i class="fa fa-pencil" aria-hidden="true"></i>
-              <% end %>
-              <%= link_to match_goal_path(match_goal), method: :delete, data: { confirm: "Are you sure you want to delete this goal?"}, class: "mx-1 text-decoration-none" do %>
-                <i class="fa fa-trash" aria-hidden="true"></i>
-              <% end %>
-            </div>
+            <% if user_signed_in? %>
+              <div class="px-2">
+                <%= link_to edit_match_match_goal_path(@match, match_goal), class: "mx-1 text-decoration-none" do %>
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                <% end %>
+                <%= link_to match_goal_path(match_goal), method: :delete, data: { confirm: "Are you sure you want to delete this goal?"}, class: "mx-1 text-decoration-none" do %>
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                <% end %>
+              </div>
+            <% end %>
             <!-- ADMIN -->
           </div>
         <% end %>
       </div>
     </div>
-    <div class="d-flex justify-content-center row m-0">
-      <% unless Date.today > @match.date || @match.result_confirmed || @match.teams.size < 2 %>
-          <%= link_to 'ADD GOAL', new_match_match_goal_path(@match), class: 'btn btn-primary primary-btn mt-3 mx-2' %>
-      <% end %>
-      <% unless @match.result_confirmed || @match.teams.size < 2 %>
-        <%= link_to 'CONFIRM RESULT', result_confirmation_match_path(@match), class: 'btn btn-primary primary-btn mt-3 mx-2', data: { confirm: "Are you sure you want to confirm this result?" } %>
-      <% end %>
-    </div>
+    <!-- ADMIN -->
+    <% if user_signed_in? %>
+      <div class="d-flex justify-content-center row m-0">
+        <% unless Date.today > @match.date || @match.result_confirmed || @match.teams.size < 2 %>
+            <%= link_to 'ADD GOAL', new_match_match_goal_path(@match), class: 'btn btn-primary primary-btn mt-3 mx-2' %>
+        <% end %>
+        <% unless @match.result_confirmed || @match.teams.size < 2 %>
+          <%= link_to 'CONFIRM RESULT', result_confirmation_match_path(@match), class: 'btn btn-primary primary-btn mt-3 mx-2', data: { confirm: "Are you sure you want to confirm this result?" } %>
+        <% end %>
+      </div>
+    <% end %>
+    <!-- ADMIN -->
   </div>
   <div class="row pb-3 justify-content-around">
     <div class="col-12 col-md-6 pr-3 pr-md-2 mb-3 mb-md-0">
@@ -54,7 +60,12 @@
           </div>
         <% end %>
         <% if @match.teams.where(home: true).any? %>
-          <h5 class="text-center font-weight-bold mb-3">HOME TEAM <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_match_team_path(@match, @match.teams.first), class: "ml-1" unless @match.teams.empty? %></h5>
+          <h5 class="text-center font-weight-bold mb-3">
+            HOME TEAM
+            <% if user_signed_in? && @match.teams.any? %>
+              <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_match_team_path(@match, @match.teams.first), class: "ml-1" %>
+            <% end %>
+            </h5>
           <div class="row justify-content-center m-0">
             <div class="col-4 mb-2">
               <% pl = Player.find_by(name: @match.teams.where(home: true).first.captain) %>
@@ -88,7 +99,13 @@
           </div>
         <% end %>
         <% if @match.teams.where(home: false).any? %>
-          <h5 class="text-center font-weight-bold mb-3 text-light">AWAY TEAM <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_match_team_path(@match, @match.teams.last), class: "ml-1" unless @match.teams.size < 2 %></h5>
+          <h5 class="text-center font-weight-bold mb-3 text-light">
+            AWAY TEAM
+            <% if user_signed_in? && @match.teams.size > 1 %>
+              <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_match_team_path(@match, @match.teams.last), class: "ml-1" unless @match.teams.size < 2 %>
+            <% end %>
+
+          </h5>
           <div class="row justify-content-center m-0">
             <div class="col-4 mb-2">
               <% pl = Player.find_by(name: @match.teams.where(home: false).first.captain) %>
