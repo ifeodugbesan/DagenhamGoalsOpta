@@ -2,7 +2,7 @@
   <div class="py-3">
     <%= simple_form_for @match do |f| %>
       <%= f.input :title %>
-      <%= f.input :date, html5: true %>
+      <%= f.input :date, html5: true, input_html: { value: Date.today } %>
       <div class="d-flex justify-content-center align-items-center">
         <%= f.submit "ADD MATCH", class: 'btn btn-primary primary-btn' %>
       </div>

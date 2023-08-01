@@ -4,6 +4,8 @@ import $ from 'jquery'
 export default class extends Controller {
   static targets = ['captain', 'player', 'button']
   connect() {
+
+    console.log('yooooo')
     const isfilled = (element) => {
       return element != ""
     }
@@ -18,6 +20,7 @@ export default class extends Controller {
           count ++
         }
       })
+      console.log(count)
       myArray.push(this.captainTarget.value != "")
       this.playerTargets.forEach((input) => {
         if (count == 7) {
@@ -42,9 +45,12 @@ export default class extends Controller {
     this.captainTarget.addEventListener('change', () => {
       checkFields()
     })
+
+    checkFields()
   }
 
   toggleActive() {
     event.currentTarget.classList.toggle('player-active')
+    console.log('toggle')
   }
 }
