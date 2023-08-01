@@ -42,12 +42,27 @@ body {
   width: 100%;
   font-size: 28px;
   font-weight: bold;
-  height: 80px;
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
   &:hover {
     color: white;
+  }
+  @include media-breakpoint-down(sm) {
+    height: 96px;
+  }
+}
+
+@media only screen and
+  (device-width: 375px) and (device-height: 812px) and (orientation: portrait),
+  (device-width: 390px) and (device-height: 844px) and (orientation: portrait),
+  (device-width: 393px) and (device-height: 852px) and (orientation: portrait),
+  (device-width: 414px) and (device-height: 896px) and (orientation: portrait),
+  (device-width: 428px) and (device-height: 926px) and (orientation: portrait),
+  (device-width: 430px) and (device-height: 932px) and (orientation: portrait) {
+  .home-btn {
+    height: 120px;
   }
 }
 

@@ -47,7 +47,7 @@
   </div>
   <div class="row pb-3 justify-content-around">
     <div class="col-12 col-md-6 pr-3 pr-md-2">
-      <div class="rounded shadow mb-3 p-3 home-team" style="border: 5px solid #EE251B; background: #FF7979;">
+      <div class="rounded shadow p-3 home-team h-100" style="border: 5px solid #EE251B; background: #FF7979;">
         <% if @match.teams.empty? %>
           <%= link_to "ADD HOME TEAM", new_match_team_path(@match, home: true), class: 'btn btn-primary primary-btn' %>
         <% end %>
@@ -79,7 +79,7 @@
       </div>
     </div>
     <div class="col-12 col-md-6 pl-3 pl-md-2">
-      <div class="rounded shadow mb-3 p-3" style="border: 5px solid #111D6F; background: #333D7A;">
+      <div class="rounded shadow p-3 h-100" style="border: 5px solid #111D6F; background: #333D7A;">
         <% if @match.teams.size == 1 %>
           <%= link_to "ADD AWAY TEAM", new_match_team_path(@match, home: false), class: 'btn btn-primary primary-btn' %>
         <% end %>
