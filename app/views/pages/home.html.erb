@@ -1,7 +1,13 @@
 <div class="homepage" data-target="common.homepage" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path 'cover.jpg' %>);">
   <div class="d-flex justify-content-center align-items-center">
-    <%= link_to new_user_session_path, class: "text-decoration-none d-inline-flex" do %>
-      <h1 class="text-center pt-5 mt-2 mt-sm-5" style="color: #FFFFFF; font-family: 'Bungee Inline'">Dagenham Goals Opta</h1>
+    <% if user_signed_in? %>
+      <%= link_to destroy_user_session_path, method: :delete, data: { confirm: "Are you sure you wanna log out boss man?"}, class: "text-decoration-none d-inline-flex" do %>
+        <h1 class="text-center pt-5 mt-2 mt-sm-5" style="color: #FFFFFF; font-family: 'Bungee Inline'">Dagenham Goals Opta</h1>
+      <% end %>
+    <% else %>
+      <%= link_to new_user_session_path, class: "text-decoration-none d-inline-flex" do %>
+        <h1 class="text-center pt-5 mt-2 mt-sm-5" style="color: #FFFFFF; font-family: 'Bungee Inline'">Dagenham Goals Opta</h1>
+      <% end %>
     <% end %>
   </div>
   <div class="home-buttons mt-5 pt-0 pt-sm-5">
