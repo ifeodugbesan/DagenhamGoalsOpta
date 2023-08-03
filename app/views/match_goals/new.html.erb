@@ -9,7 +9,7 @@
             <% @users.all.each do |user| %>
               <div class="col-3 px-1 my-1">
                 <input class="form-check-input radio_buttons required d-none" type="radio" value="<%= user.id %>" name="match_goal[goal]" id="match_goal_goal_<%= user.id %>" data-target="match-goal.goal">
-                <label class="h-100 form-check-label collection_radio_buttons match-goal-player border rounded shadow" for="match_goal_goal_<%= user.id %>" data-action="click->match-goal#toggleGoalActive click->match-goal#scorerAndAssister" data-scorer="<%= user.id %>">
+                <label class="h-100 w-100 form-check-label collection_radio_buttons match-goal-player border rounded shadow" for="match_goal_goal_<%= user.id %>" data-action="click->match-goal#toggleGoalActive click->match-goal#scorerAndAssister" data-scorer="<%= user.id %>">
                   <% if user.photo.attached? %>
                     <%= cl_image_tag user.photo.key, style: 'width: 100%' %>
                   <% else %>

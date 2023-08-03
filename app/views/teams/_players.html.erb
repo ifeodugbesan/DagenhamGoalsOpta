@@ -1,0 +1,47 @@
+<% if params[:captain] %>
+  <% player = Player.find(params[:captain])  %>
+  <% possible_players = @users.reject { |p| p == player } %>
+
+  <% if params[:home] == 'false' %>
+    <% possible_players = possible_players.reject { |p| @match.teams.first.players.include?(p) } %>
+  <% end %>
+
+  <fieldset class="form-group check_boxes optional team_players">
+    <div class="d-flex align-items-center justify-content-start">
+      <div class="col-3 col-md-2 px-1">
+        <label class="border rounded shadow text-truncate mb-0 w-100" for="team_players_<%= player.id %>">
+            <% if player.photo.attached? %>
+              <%= cl_image_tag player.photo.key, style: 'width: 100%; height: 150px !important' %>
+            <% else %>
+              <%= image_tag 'default.png', style: 'width: 100%; height: 150px !important' %>
+            <% end %>
+            <div class="py-1 d-flex justify-content-center bg-white">
+              <p class="text-center m-0" style="font-size: 10px;"><%= player.name %></p>
+            </div>
+        </label>
+      </div>
+      <h4 class="text-center ml-3">Who's on <%= player.name %>'s team</h4>
+    </div>
+    <hr>
+    <input type="hidden" name="team[players][]" value="">
+    <div class="form-check p-0">
+      <div class="row m-0">
+        <% possible_players.each do |user| %>
+          <div class="col-3 px-1 my-1">
+            <input class="form-check-input check_boxes optional d-none" type="checkbox" value="<%= user.id %>" name="team[players][]" id="team_players_<%= user.id %>" data-target="team.player">
+            <label class="form-check-label collection_check_boxes border rounded shadow text-truncate w-100" for="team_players_<%= user.id %>" data-action="click->team#toggleActive  click->team#enableButton">
+                <% if user.photo.attached? %>
+                  <%= cl_image_tag user.photo.key, style: 'width: 100%' %>
+                <% else %>
+                  <%= image_tag 'default.png', style: 'width: 100%' %>
+                <% end %>
+                <div class="py-1 d-flex justify-content-center bg-white">
+                  <p class="text-center m-0" style="font-size: 10px;"><%= user.name %></p>
+                </div>
+            </label>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>

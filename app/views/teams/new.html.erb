@@ -1,15 +1,22 @@
+<% if params[:home] == 'false' %>
+  <% @users = @users.reject { |p| @match.teams.first.players.include?(p) } %>
+<% end %>
+
+
 <div class="container py-3" data-controller="team">
   <%= simple_form_for [@match, @team] do |f| %>
-    <%= f.input :captain, required: true, collection: Player.all.order(name: :asc), group_method: :name, value_method: :name, input_html: { data: { target: 'team.captain'} } %>
-    <fieldset class="form-group check_boxes optional team_players">
-      <legend class="col-form-label pt-0">Remaining players</legend>
-      <input type="hidden" name="team[players][]" value="">
-      <div class="form-check p-0">
-        <div class="row m-0">
-          <% @users.all.each do |user| %>
-            <div class="col-3 px-1 my-1">
-              <input class="form-check-input check_boxes optional d-none" type="checkbox" value="<%= user.id %>" name="team[players][]" id="team_players_<%= user.id %>" data-target="team.player">
-              <label class="form-check-label collection_check_boxes border rounded shadow text-truncate" for="team_players_<%= user.id %>" data-action="click->team#toggleActive">
+    <div class="" data-target="team.captainContainer">
+      <fieldset class="form-group radio_buttons required team_captain">
+        <h3 class="text-center mb-3">Who's captain?</h3>
+
+        <input type="hidden" name="team[captain]" value="" data-action="change->team#enableButton">
+        <div class="form-check p-0">
+          <div class="row justify-content-center m-0">
+
+            <% @users.each do |user| %>
+              <div class="col-3 px-1 my-1">
+                <input class="form-check-input radio_buttons required d-none" type="radio" value="<%= user.id %>" name="team[captain]" id="team_captain_<%= user.id %>" data-target="team.captain">
+                <label class="h-100 w-100 form-check-label collection_radio_buttons team-captain border rounded shadow" for="team_captain_<%= user.id %>" data-action="click->team#toggleCaptainActive click->team#showPlayers" data-captain="<%= user.id %>">
                   <% if user.photo.attached? %>
                     <%= cl_image_tag user.photo.key, style: 'width: 100%' %>
                   <% else %>
@@ -18,12 +25,18 @@
                   <div class="py-1 d-flex justify-content-center bg-white">
                     <p class="text-center m-0" style="font-size: 10px;"><%= user.name %></p>
                   </div>
-              </label>
-            </div>
-          <% end %>
+                </label>
+              </div>
+            <% end %>
+          </div>
         </div>
-      </div>
-    </fieldset>
+      </fieldset>
+    </div>
+
+
+    <div class="d-none" data-target="team.playersContainer">
+      <%= render 'players', users: @users %>
+    </div>
 
     <%= f.input :home, :as => :hidden, :input_html => { :value => params[:home] } %>
     <div class="d-flex justify-content-center">

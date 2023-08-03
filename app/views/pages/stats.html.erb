@@ -41,6 +41,9 @@
             <td class="p-2 border-right text-center">
               <STRONG>W %</STRONG>
             </td>
+            <td class="p-2 border-right text-center">
+              <STRONG><i class="fa fa-trophy" aria-hidden="true"></i></STRONG>
+            </td>
           </tr>
         </thead>
         <tbody>
@@ -61,6 +64,7 @@
               <td class="p-2 border-right text-center"><%= player.teams.where(season: 1, winners: true).size %></td>
               <td class="p-2 border-right text-center"><%= player.teams.where(season: 1, losers: true).size %></td>
               <td class="p-2 border-right text-center"><%= player.matches.where(season: 1).any? ? "#{(player.teams.where(season: 1, winners: true).size / player.matches.where(season: 1, result_confirmed: true).size.to_f * 100).round(2)}%" : 'N/A' %></td>
+              <td class="p-2 border-right text-center"><%= player.points %></td>
             </tr>
           <% end %>
         </tbody>
