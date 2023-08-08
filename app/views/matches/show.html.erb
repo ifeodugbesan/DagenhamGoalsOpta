@@ -67,22 +67,22 @@
             <% end %>
             </h5>
           <div class="row justify-content-center m-0">
-            <div class="col-4 mb-2">
+            <div class="col-4 mb-2 px-1">
               <% pl = Player.find_by(name: @match.teams.where(home: true).first.captain) %>
               <% if pl.photo.attached? %>
-                <%= cl_image_tag pl.photo.key, class: "w-100 ms-img" %>
+                <%= cl_image_tag pl.photo.key, class: "w-100 ms-img", style: "border: 3px solid #EE251B" %>
               <% else %>
-                <%= image_tag "default.png", class: "w-100 ms-img" %>
+                <%= image_tag "default.png", class: "w-100 ms-img", style: "border: 3px solid #EE251B" %>
               <% end %>
               <p class="m-0 text-center player-name"><%= @match.teams.where(home: true).first.captain %><i class="fa fa-contao ml-2"></i></p>
             </div>
             <% home_team = @match.teams.where(home: true).first.players.reject { |c| c == pl } %>
             <% home_team.each do |player| %>
-              <div class="col-4 mb-2">
+              <div class="col-4 mb-2 px-1">
                 <% if player.photo.attached? %>
-                  <%= cl_image_tag player.photo.key, class: "w-100 ms-img" %>
+                  <%= cl_image_tag player.photo.key, class: "w-100 ms-img", style: "border: 3px solid #EE251B" %>
                 <% else %>
-                  <%= image_tag 'default.png', class: "w-100 ms-img" %>
+                  <%= image_tag 'default.png', class: "w-100 ms-img", style: "border: 3px solid #EE251B" %>
                 <% end %>
                 <p class="m-0 text-center player-name"><%= player.name %> </p>
               </div>
@@ -107,22 +107,22 @@
 
           </h5>
           <div class="row justify-content-center m-0">
-            <div class="col-4 mb-2">
+            <div class="col-4 mb-2 px-1">
               <% pl = Player.find_by(name: @match.teams.where(home: false).first.captain) %>
               <% if pl.photo.attached? %>
-                <%= cl_image_tag pl.photo.key, class: "w-100 ms-img" %>
+                <%= cl_image_tag pl.photo.key, class: "w-100 ms-img", style: "border: 3px solid #111D6F" %>
               <% else %>
-                <%= image_tag "default.png", class: "w-100 ms-img" %>
+                <%= image_tag "default.png", class: "w-100 ms-img", style: "border: 3px solid #111D6F" %>
               <% end %>
               <p class="m-0 text-center text-light player-name"><%= @match.teams.where(home: false).first.captain %><i class="fa fa-contao ml-2"></i></p>
             </div>
             <% away_team = @match.teams.where(home: false).first.players.reject { |c| c == pl } %>
             <% away_team.each do |player| %>
-              <div class="col-4 mb-2">
+              <div class="col-4 mb-2 px-1">
                 <% if player.photo.attached? %>
-                  <%= cl_image_tag player.photo.key, class: "w-100 ms-img" %>
+                  <%= cl_image_tag player.photo.key, class: "w-100 ms-img", style: "border: 3px solid #111D6F" %>
                 <% else %>
-                  <%= image_tag 'default.png', class: "w-100 ms-img" %>
+                  <%= image_tag 'default.png', class: "w-100 ms-img", style: "border: 3px solid #111D6F" %>
                 <% end %>
                 <p class="m-0 text-center text-light player-name"><%= player.name %> </p>
               </div>
