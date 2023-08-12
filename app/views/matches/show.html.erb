@@ -67,8 +67,20 @@
             <% end %>
             </h5>
           <div class="row justify-content-center m-0">
-            <div class="col-4 mb-2 px-1">
+            <div class="col-4 mb-2 px-1 position-relative">
               <% pl = Player.find_by(name: @match.teams.where(home: true).first.captain) %>
+              <div class="g-a px-2 row m-0">
+                <% @match.goals.where(player: pl).size.times do |i| %>
+                  <div class="col-1 p-0 span <%= 'overlap' if i > 0 %>">
+                    <%= image_tag 'ball-fill.png', width: 20, class: 'mr-2' %>
+                  </div>
+                <% end %>
+                <% @match.assists.where(player: pl).size.times do |i| %>
+                  <div class="col-1 p-0 span <%= 'overlap' if i > 0 %>">
+                    <%= image_tag 'boot-fill.png', width: 20, class: 'mr-2' %>
+                  </div>
+                <% end %>
+              </div>
               <% if pl.photo.attached? %>
                 <%= cl_image_tag pl.photo.key, class: "w-100 ms-img", style: "border: 3px solid #EE251B" %>
               <% else %>
@@ -78,7 +90,20 @@
             </div>
             <% home_team = @match.teams.where(home: true).first.players.reject { |c| c == pl } %>
             <% home_team.each do |player| %>
-              <div class="col-4 mb-2 px-1">
+              <div class="col-4 mb-2 px-1 position-relative">
+                <% pl = Player.find_by(name: @match.teams.where(home: false).first.captain) %>
+              <div class="g-a px-2 row m-0">
+                <% @match.goals.where(player: player).size.times do |i| %>
+                  <span class="p-0 <%= 'overlap' if i > 0 %>">
+                    <%= image_tag 'ball-fill.png', width: 20 %>
+                  </span>
+                <% end %>
+                <% @match.assists.where(player: player).size.times do |i| %>
+                  <span class="p-0 <%= 'overlap' if i > 0 %>">
+                    <%= image_tag 'boot-fill.png', width: 20 %>
+                  </span>
+                <% end %>
+              </div>
                 <% if player.photo.attached? %>
                   <%= cl_image_tag player.photo.key, class: "w-100 ms-img", style: "border: 3px solid #EE251B" %>
                 <% else %>
@@ -107,8 +132,20 @@
 
           </h5>
           <div class="row justify-content-center m-0">
-            <div class="col-4 mb-2 px-1">
+            <div class="col-4 mb-2 px-1 position-relative">
               <% pl = Player.find_by(name: @match.teams.where(home: false).first.captain) %>
+              <div class="g-a px-2 row m-0">
+                <% @match.goals.where(player: pl).size.times do |i| %>
+                  <span class="p-0 <%= 'overlap' if i > 0 %>">
+                    <%= image_tag 'ball-fill.png', width: 20 %>
+                  </span>
+                <% end %>
+                <% @match.assists.where(player: pl).size.times do |i| %>
+                  <span class="p-0 <%= 'overlap' if i > 0 %>">
+                    <%= image_tag 'boot-fill.png', width: 20 %>
+                  </span>
+                <% end %>
+              </div>
               <% if pl.photo.attached? %>
                 <%= cl_image_tag pl.photo.key, class: "w-100 ms-img", style: "border: 3px solid #111D6F" %>
               <% else %>
@@ -118,7 +155,19 @@
             </div>
             <% away_team = @match.teams.where(home: false).first.players.reject { |c| c == pl } %>
             <% away_team.each do |player| %>
-              <div class="col-4 mb-2 px-1">
+              <div class="col-4 mb-2 px-1 position-relative">
+                <div class="g-a px-2 row m-0">
+                  <% @match.goals.where(player: player).size.times do |i| %>
+                    <span class="p-0 <%= 'overlap' if i > 0 %>">
+                      <%= image_tag 'ball-fill.png', width: 20 %>
+                    </span>
+                  <% end %>
+                  <% @match.assists.where(player: player).size.times do |i| %>
+                    <span class="p-0 <%= 'overlap' if i > 0 %>">
+                      <%= image_tag 'boot-fill.png', width: 20 %>
+                    </span>
+                  <% end %>
+                </div>
                 <% if player.photo.attached? %>
                   <%= cl_image_tag player.photo.key, class: "w-100 ms-img", style: "border: 3px solid #111D6F" %>
                 <% else %>
@@ -143,3 +192,4 @@
 
   <% end %>
 </div>
+
