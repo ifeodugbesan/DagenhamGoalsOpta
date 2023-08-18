@@ -37,6 +37,10 @@
               <p class="m-0 text-center"><%= player.teams.where(winners: true).size %></p>
             </div>
             <div class="col-4 pt-2 pb-1 d-flex flex-column justify-content-center align-items-center">
+              <p class="m-0 text-center font-weight-bold">Draws</p>
+              <p class="m-0 text-center"><%= player.teams.where(losers: false, winners: false).size %></p>
+            </div>
+            <div class="col-4 pt-2 pb-1 d-flex flex-column justify-content-center align-items-center">
               <p class="m-0 text-center font-weight-bold">Losses</p>
               <p class="m-0 text-center"><%= player.teams.where(losers:true).size %></p>
             </div>
