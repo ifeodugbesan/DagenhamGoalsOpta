@@ -8,6 +8,7 @@
     "@rails/webpacker": "5.4.4",
     "bootstrap": "^4.5.3",
     "jquery": "^3.5.1",
+    "node-gyp-build": "^4.8.0",
     "node-sass": "4.14.0",
     "popper.js": "^1.16.1",
     "stimulus": "^1.1.1",
