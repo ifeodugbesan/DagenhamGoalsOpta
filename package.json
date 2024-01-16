@@ -20,5 +20,8 @@
   "engines": {
     "node": "14.15.5",
     "yarn":"1.22.17"
-  }
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
 }
