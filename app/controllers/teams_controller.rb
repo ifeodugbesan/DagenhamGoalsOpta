@@ -20,7 +20,7 @@ class TeamsController < ApplicationController
     @team = Team.new(match: @match)
     @team.captain = Player.find(params[:team][:captain]).name
     params[:team][:home] == "true" ? @team.home = true : @team.home = false
-    @team.season = 1
+    @team.season = 2
     @team.save
     @players = params[:team][:players].reject(&:blank?).map { |player| TeamPlayer.create(team: @team, player: Player.find(player.to_i)) }
     @players << TeamPlayer.create(team: @team, player: Player.find(params[:team][:captain]))
