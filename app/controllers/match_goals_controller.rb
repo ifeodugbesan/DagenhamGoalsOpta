@@ -17,8 +17,8 @@ class MatchGoalsController < ApplicationController
   def create
     scorer = Player.find(params[:match_goal][:goal])
     assister = Player.find(params[:match_goal][:assist])
-    goal = Goal.create(player: scorer, season: 2)
-    assist = Assist.create(player: assister, season: 2)
+    goal = Goal.create(player: scorer, season: 1)
+    assist = Assist.create(player: assister, season: 1)
     if scorer.name == ("OG Home" || "OG Away")
       @team = scorer.name == "OG Home" ? @match.teams.first : @match.teams.last
     else

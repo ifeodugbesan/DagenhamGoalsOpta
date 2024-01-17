@@ -1,8 +1,7 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :edit, :update, :destroy, :result_confirmation]
   def index
-    @season_one_matches = Match.where(season: 1).order(created_at: :desc)
-    @season_two_matches = Match.where(season: 2).order(created_at: :desc)
+    @matches = Match.all.order(created_at: :desc)
   end
 
   def show
@@ -15,7 +14,7 @@ class MatchesController < ApplicationController
 
   def create
     @match = Match.new(match_params)
-    @match.season = 2
+    @match.season = 1
     if @match.save
       redirect_to match_path(@match)
     else

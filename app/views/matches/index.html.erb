@@ -1,117 +1,53 @@
-<div class="container">
+<div class="container pt-3">
   <%#= link_to 'NEW MATCH', new_match_path, class: 'btn btn-block btn-primary primary-btn my-3' %>
-  <h3 class="font-weight-bold text-center mb-3 pt-3">Matches</h3>
-  <ul class="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
-    <li class="nav-item flex-grow-1">
-      <a class="nav-link text-center" id="pills-season-one-tab" data-toggle="pill" href="#pills-season-one" role="tab" aria-controls="pills-season-one" aria-selected="false">Season One</a>
-    </li>
-    <li class="nav-item flex-grow-1">
-      <a class="nav-link text-center active" id="pills-season-two-tab" data-toggle="pill" href="#pills-season-two" role="tab" aria-controls="pills-season-two" aria-selected="true">Season Two</a>
-    </li>
-  </ul>
-
-  <div class="tab-content" id="pills-tabContent" style="overflow: scroll">
-    <!-- SEASON ONE -->
-    <div class="tab-pane fade show" id="pills-season-one" role="tabpanel" aria-labelledby="pills-season-one-tab">
-      <div class="row">
-        <% @season_one_matches.each do |match| %>
-          <div class="col-12 col-md-6 col-lg-4">
-            <%= link_to match_path(match), class: 'no-decoration' do %>
-              <div class="card rounded shadow my-3">
-                <div class="d-flex flex-column justify-content-center align-items-center">
-                  <% if match.teams.size == 2 %>
-                    <div class="d-flex w-100">
-                      <div class="w-50">
-                        <% hp = Player.find_by(name: match.teams.first.captain) %>
-                        <% if hp.photo.attached? %>
-                          <%= cl_image_tag hp.photo.key, style: 'width: 100%; height: 260px; object-fit: cover;' %>
-                        <% else %>
-                          <%= image_tag 'default.png', style: 'width: 100%; height: 260px; object-fit: cover;' %>
-                        <% end %>
-                      </div>
-                      <div class="w-50">
-                        <% ap = Player.find_by(name: match.teams.last.captain) %>
-                        <% if ap.photo.attached? %>
-                          <%= cl_image_tag ap.photo.key, style: 'width: 100%; height: 260px; object-fit: cover;' %>
-                        <% else %>
-                          <%= image_tag 'default.png', style: 'width: 100%; height: 260px; object-fit: cover;' %>
-                        <% end %>
-                      </div>
-                    </div>
-                  <% end %>
-                  <div class="p-2 d-flex flex-column justify-content-center align-items-center">
-                    <h5 class="mb-0 font-weight-bold"><%= match.title %></h5>
-                    <p class="mb-0" style="font-size: 14px;"><%= match.date.strftime('%A %e %B %Y') %></p>
+  <h3 class="font-weight-bold text-center">Matches</h3>
+  <div class="d-flex justify-content-center align-items-center">
+    <%= link_to "NEW MATCH", new_match_path, class: "btn btn-primary primary-btn mt-4" if user_signed_in? %>
+  </div>
+  <div class="row">
+    <% @matches.each do |match| %>
+      <div class="col-12 col-md-6 col-lg-4">
+        <%= link_to match_path(match), class: 'no-decoration' do %>
+          <div class="card rounded shadow my-3">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+              <% if match.teams.size == 2 %>
+                <div class="d-flex w-100">
+                  <div class="w-50">
+                    <% hp = Player.find_by(name: match.teams.first.captain) %>
+                    <% if hp.photo.attached? %>
+                      <%= cl_image_tag hp.photo.key, style: 'width: 100%; height: 260px; object-fit: cover;' %>
+                    <% else %>
+                      <%= image_tag 'default.png', style: 'width: 100%; height: 260px; object-fit: cover;' %>
+                    <% end %>
                   </div>
-                  <% if user_signed_in? %>
-                    <div class="p-3 w-100 d-flex align-items-center justify-content-end border-top">
-                      <%= link_to edit_match_path(match) do %>
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                      <% end %>
-                      <%= link_to match_path(match), method: :delete, data: { confirm: "Are you sure you want to delete this match?"}, class: "ml-3" do %>
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                      <% end %>
-                    </div>
+                  <div class="w-50">
+                    <% ap = Player.find_by(name: match.teams.last.captain) %>
+                    <% if ap.photo.attached? %>
+                      <%= cl_image_tag ap.photo.key, style: 'width: 100%; height: 260px; object-fit: cover;' %>
+                    <% else %>
+                      <%= image_tag 'default.png', style: 'width: 100%; height: 260px; object-fit: cover;' %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+              <div class="p-2 d-flex flex-column justify-content-center align-items-center">
+                <h5 class="mb-0 font-weight-bold"><%= match.title %></h5>
+                <p class="mb-0" style="font-size: 14px;"><%= match.date.strftime('%A %e %B %Y') %></p>
+              </div>
+              <% if user_signed_in? %>
+                <div class="p-3 w-100 d-flex align-items-center justify-content-end border-top">
+                  <%= link_to edit_match_path(match) do %>
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                  <% end %>
+                  <%= link_to match_path(match), method: :delete, data: { confirm: "Are you sure you want to delete this match?"}, class: "ml-3" do %>
+                    <i class="fa fa-trash" aria-hidden="true"></i>
                   <% end %>
                 </div>
-              </div>
-            <% end %>
+              <% end %>
+            </div>
           </div>
         <% end %>
       </div>
-    </div>
-
-    <!-- SEASON TWO -->
-    <div class="tab-pane fade show active" id="pills-season-two" role="tabpanel" aria-labelledby="pills-season-two-tab">
-      <div class="d-flex justify-content-center align-items-center">
-        <%= link_to "NEW MATCH", new_match_path, class: "btn btn-primary primary-btn mt-4" if user_signed_in? %>
-      </div>
-      <div class="row">
-        <% @season_two_matches.each do |match| %>
-          <div class="col-12 col-md-6 col-lg-4">
-            <%= link_to match_path(match), class: 'no-decoration' do %>
-              <div class="card rounded shadow my-3">
-                <div class="d-flex flex-column justify-content-center align-items-center">
-                  <% if match.teams.size == 2 %>
-                    <div class="d-flex w-100">
-                      <div class="w-50">
-                        <% hp = Player.find_by(name: match.teams.first.captain) %>
-                        <% if hp.photo.attached? %>
-                          <%= cl_image_tag hp.photo.key, style: 'width: 100%; height: 260px; object-fit: cover;' %>
-                        <% else %>
-                          <%= image_tag 'default.png', style: 'width: 100%; height: 260px; object-fit: cover;' %>
-                        <% end %>
-                      </div>
-                      <div class="w-50">
-                        <% ap = Player.find_by(name: match.teams.last.captain) %>
-                        <% if ap.photo.attached? %>
-                          <%= cl_image_tag ap.photo.key, style: 'width: 100%; height: 260px; object-fit: cover;' %>
-                        <% else %>
-                          <%= image_tag 'default.png', style: 'width: 100%; height: 260px; object-fit: cover;' %>
-                        <% end %>
-                      </div>
-                    </div>
-                  <% end %>
-                  <div class="p-2 d-flex flex-column justify-content-center align-items-center">
-                    <h5 class="mb-0 font-weight-bold"><%= match.title %></h5>
-                    <p class="mb-0" style="font-size: 14px;"><%= match.date.strftime('%A %e %B %Y') %></p>
-                  </div>
-                  <% if user_signed_in? %>
-                    <div class="p-3 w-100 d-flex align-items-center justify-content-end border-top">
-                      <%= link_to edit_match_path(match) do %>
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                      <% end %>
-                      <%= link_to match_path(match), method: :delete, data: { confirm: "Are you sure you want to delete this match?"}, class: "ml-3" do %>
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                      <% end %>
-                    </div>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    </div>
+    <% end %>
   </div>
 </div>
